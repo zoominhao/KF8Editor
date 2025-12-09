@@ -1,0 +1,163 @@
+#set global $containerTypes = ["arr", "mixarr", "map", "mixmap", "omap", "mixomap"]
+#*
+
+*#
+#def ContainerTypeName($param)
+#if $param.type in ["arr", "mixarr"]
+vkfVector<$RetTypeName($param.value_type_prop)>#slurp
+#else if $param.type in ["map", "mixmap"]
+vkfMap<$RetTypeName($param.key_type_prop), $RetTypeName($param.value_type_prop)>#slurp
+#else if $param.type in ["omap", "mixomap"]
+vkfOMap<$RetTypeName($param.key_type_prop), $RetTypeName($param.value_type_prop)>#slurp
+#end if
+#end def
+#*
+
+*#
+#def TypeName($param)
+#if $param.type == "mixobject" and $param.otype != "char"
+const v${param.otype}&#slurp
+#else if $param.type == "null"
+void#slurp
+#else if $param.type == "object"
+const v${param.otype}&#slurp
+#else if $param.type == "kfstr" or $param.type == "kfname"
+const v${param.type}&#slurp
+#else if $param.type in $containerTypes
+const $ContainerTypeName($param)&#slurp
+#else if $param.isKFRef == True
+const vkfRef<v${param.otype}>&#slurp
+#else
+$param.rawType#slurp
+#end if
+#end def
+#*
+
+*#
+#def DefalutValue($param)
+#if $param.defaultval != None and ($param.defaultval.find('(') == -1 or $param.defaultval.find('()') != -1)
+#if $param.type == "mixobject" and $param.otype != "char"
+#if $param.defaultval == "null" or $param.defaultval == "nullptr"
+ = v${param.otype}()#slurp
+#end if
+#else if $param.type == "object"
+ = MakeInstance(${param.otype})#slurp
+#else if $param.type == "kfstr" or $param.type == "kfname"
+ = $param.defaultval#slurp
+#else if $param.type in $containerTypes
+ = MakeInstance($ContainerTypeName($param))#slurp
+#else if $param.isKFRef == True
+ = vkfRef<v${param.otype}>($param.defaultval)#slurp
+#else
+ = $param.defaultval#slurp
+#end if
+#end if
+#end def
+#*
+
+*#
+#def RetTypeName($param)
+#if $param.isKFRef == True
+vkfRef<v${param.otype}>#slurp
+#else if ($param.type == "mixobject" and $param.otype != "char") or $param.type == "object"
+v${param.otype}#slurp
+#else if $param.type == "kfstr" or $param.type == "kfname"
+v${param.type}#slurp
+#else if $param.type == "null"
+void#slurp
+#else if $param.type in $containerTypes
+$ContainerTypeName($param)#slurp
+#else
+$param.rawType#slurp
+#end if
+#end def
+#*
+
+*#
+{
+#for $i in range($len($datas))
+    #set $data = $datas[$i]
+#if $data.class in $extras
+    #set $extraItem = $extras[$data.class]
+    #set $extendcls = $extraItem["extendcls"]
+    #if $extraItem.root_base_class == "KFGCObject"
+        #set $isgcobject = True
+    #else if $extraItem.root_base_class == "UObject"
+        #set $isuobject = True
+    #end if
+    #if $extendcls != ""
+    #set $extendName = 'v' + $extendcls
+    #else if $isgcobject == True
+    #set $extendName = "vGCObject"
+    #else if $isuobject == True
+    #set $extendName = "vUObject"
+    #else
+    #set $extendName = "vAutoObject"
+    #end if
+    "v${data.class}": {
+        "baseClass": "$extendName",
+        "completionItems": [
+#if "funcs" in $data
+    #for $f in range($len($data.funcs))
+        #set $func = $data.funcs[$f]
+    #if $func.gen != False
+            #if "alias" in $func:
+                #set $funcName = $func.alias
+            #else
+                #set $funcName = $func.name
+            #end if
+        	#if "isStatic" not in $func
+                #set $staticDesc = ''
+            #else
+                #set $staticDesc = 'static '
+            #end if
+            {
+        #if $len($func.params) > 0
+                "label": "${staticDesc}$RetTypeName($func.retparam) ${funcName}(#slurp
+        #else
+                "label": "${staticDesc}$RetTypeName($func.retparam) ${funcName}()",
+        #end if
+        #for $p in range($len($func.params))
+            #if $p == $len($func.params) - 1
+                #set $comma=""
+            #else
+                #set $comma=", "
+            #end if
+$TypeName($func.params[$p]) ${func.params[$p].name}$DefalutValue($func.params[$p])${comma}#slurp
+#if $p + 1 >= $len($func.params)
+)",
+#end if
+        #end for
+        #if $len($func.params) > 0
+                "insertText": "${funcName}(#slurp
+        #else
+                "insertText": "${funcName}()"
+        #end if
+        #for $p in range($len($func.params))
+            #if $p == $len($func.params) - 1
+                #set $comma=""
+            #else
+                #set $comma=", "
+            #end if
+$TypeName($func.params[$p]) ${func.params[$p].name}$DefalutValue($func.params[$p])${comma}#slurp
+#if $p + 1 >= $len($func.params)
+)"
+#end if
+        #end for
+    #end if
+    #if $f + 1 >= $len($data.funcs)
+            }
+    #else
+            },
+    #end if
+    #end for
+#end if
+        ]
+#if $i + 1 >= $len($datas)
+    }
+#else
+    },
+#end if
+#end if
+#end for
+}

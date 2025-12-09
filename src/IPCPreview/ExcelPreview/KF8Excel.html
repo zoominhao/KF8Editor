@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../../libs/jquery.min.js"></script>
+    <link rel='stylesheet' href="../../../libs/luckysheet/plugins/css/pluginsCss.css" />
+    <link rel='stylesheet' href="../../../libs/luckysheet/plugins/plugins.css" />
+    <link rel='stylesheet' href="../../../libs/luckysheet/css/luckysheet.css" />
+    <link rel='stylesheet' href="../../../libs/luckysheet/assets/iconfont/iconfont.css" />
+    <script src="../../../libs/luckysheet/plugins/js/plugin.js"></script>
+    <script src="../../../libs/luckysheet/luckysheet.umd.js"></script>
+    <link href="excel/WebExcelDescription.js" rel=preload as=script>
+    <link href="excel/WebExcelDataTool.js" rel=preload as=script>
+    <link href="excel/WebExcel.js" rel=preload as=script>
+</head>
+<body style="background-color:  #e0e0e0;">
+<!--button onclick="SaveBlkData()">导出</button-->
+<div id="WebExcelArea" style="margin:0px;padding:0px;position:absolute;width:100%;height:100%;left: 0px;top: 0px;"></div>
+<script src="../../utils/hdNumHelper.js"></script>
+<script src="excel/WebExcelDescription.js"></script>
+<script src="excel/WebExcelDataTool.js"></script>
+<script src="excel/WebExcel.js"></script>
+<script type="text/javascript">
+    console.log(parent._global);
+    let kfdtable = parent._global.editor.context.kfdtable;
+    let data = parent._global.editor.blkdata.blk.data.object;
+    //if (data["__cls__"] == null)
+    //    data["__cls__"] = parent._global.editor.blkdata.blk.type.toString();
+
+    KFDPropTool = parent.KFDPropTool;
+    IKFFileIO_Type = parent.IKFFileIO_Type;
+
+    WebExcelDataTool.kfdtable = kfdtable;
+    webExcel = new WebExcel("WebExcelArea");
+    webExcel.resetAndWriteData(WebExcelDataTool.KFDataToExcelData(data));
+    function SaveBlkData()
+    {
+        let data = webExcel.readDataFromExcel();
+        data = WebExcelDataTool.ExcelDataToKFData(data);
+        parent._global.editor.blkdata.blk.data.object = data;
+        return data;
+    }
+</script>
+</body>
+</html>

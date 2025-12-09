@@ -1,0 +1,184 @@
+[
+    {
+        "includes": [
+            "KFDTestObject.h"
+        ],
+        "class": "FVector",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "X",
+                "type": "num1",
+                "unknowtags": [
+                    {
+                        "tag": "NUMRANGE",
+                        "val": "0-0|1"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Y",
+                "type": "num1",
+                "unknowtags": [
+                    {
+                        "tag": "NUMRANGE",
+                        "val": "0-0|1"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "Z",
+                "type": "num1",
+                "unknowtags": [
+                    {
+                        "tag": "NUMRANGE",
+                        "val": "0-0|1"
+                    }
+                ]
+            }
+        ],
+        "clsid": 1001
+    },
+    {
+        "includes": [
+            "KFDTestObject.h",
+            "FVectorF.h"
+        ],
+        "cname": "测试对象A",
+        "class": "KFTestObjectA",
+        "extend": "KFGCObject",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "缩放",
+                "default": "X:0|Y:0|Z:1",
+                "name": "scale",
+                "otype": "FVector",
+                "type": "object"
+            },
+            {
+                "id": 2,
+                "cname": "数值1",
+                "default": "1.f",
+                "name": "value1",
+                "type": "float"
+            }
+        ],
+        "funcs": [
+            {
+                "params": [
+                    {
+                        "name": "param_0",
+                        "rawType": "float",
+                        "type": "float",
+                        "otype": ""
+                    },
+                    {
+                        "name": "param_1",
+                        "rawType": "float",
+                        "type": "float",
+                        "otype": ""
+                    }
+                ],
+                "name": "AddToValue1",
+                "retparam": {
+                    "name": "return",
+                    "rawType": "float",
+                    "type": "float",
+                    "otype": ""
+                }
+            },
+            {
+                "params": [
+                    {
+                        "name": "a",
+                        "rawType": "float",
+                        "type": "float",
+                        "otype": ""
+                    },
+                    {
+                        "name": "b",
+                        "rawType": "float",
+                        "type": "float",
+                        "otype": ""
+                    }
+                ],
+                "name": "AutoParseMethod",
+                "retparam": {
+                    "name": "return",
+                    "rawType": "float",
+                    "type": "float",
+                    "otype": ""
+                }
+            }
+        ],
+        "clsid": 1004
+    },
+    {
+        "includes": [
+            "KFDTestObject.h",
+            "KFTestObjectAF.h"
+        ],
+        "cname": "测试对象B",
+        "class": "KFTestObjectB",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "objectA",
+                "cname": "objectA",
+                "type": "mixobject",
+                "refptr": "GetPtr",
+                "refone": "_MoreThenOne",
+                "otype": "KFTestObjectA"
+            },
+            {
+                "id": 2,
+                "name": "objectB",
+                "refptr": "GetPtr",
+                "refone": "_MoreThenOne",
+                "otype": "KFTestObjectA",
+                "type": "mixobject"
+            },
+            {
+                "id": 3,
+                "name": "objectA_array",
+                "cname": "objectA_array",
+                "type": "mixarr",
+                "refptr": "GetPtr",
+                "refone": "_MoreThenOne",
+                "otype": "KFTestObjectA"
+            },
+            {
+                "id": 4,
+                "name": "objectB_array",
+                "refptr": "GetPtr",
+                "refone": "_MoreThenOne",
+                "otype": "KFTestObjectA",
+                "type": "mixarr"
+            },
+            {
+                "id": 5,
+                "name": "objectA_map",
+                "cname": "objectA_map",
+                "type": "mixmap",
+                "refptr": "GetPtr",
+                "refone": "_MoreThenOne",
+                "first_otype": "uint32",
+                "second_otype": "KFTestObjectA"
+            },
+            {
+                "id": 6,
+                "name": "objectB_map",
+                "refptr": "GetPtr",
+                "refone": "_MoreThenOne",
+                "first_otype": "uint32",
+                "second_otype": "KFTestObjectA",
+                "type": "mixmap"
+            }
+        ],
+        "clsid": 1005
+    }
+]

@@ -1,0 +1,73 @@
+2025-12-09 13:22:00 DEBUG [MiddleServer.py:536] remotelist:[{"name": "KF8Editor", "remoteID": 100, "token": "abc", "listens": ["online", "offline"], "auto": 100}, {"name": "dynamic_server", "remoteID": 10000, "token": "abc", "listens": ["online", "offline"], "auto": 10001}]
+2025-12-09 13:22:00 DEBUG [proactor_events.py:623] Using proactor: IocpProactor
+2025-12-09 13:22:00 DEBUG [selector_events.py:59] Using selector: SelectSelector
+2025-12-09 13:22:00 INFO [MiddleServer.py:569] [MiddleServer] Server[ TCP WebSocket] start ......
+2025-12-09 13:25:09 DEBUG [MiddleServer.py:536] remotelist:[{"name": "KF8Editor", "remoteID": 100, "token": "abc", "listens": ["online", "offline"], "auto": 100}, {"name": "dynamic_server", "remoteID": 10000, "token": "abc", "listens": ["online", "offline"], "auto": 10001}]
+2025-12-09 13:25:09 DEBUG [proactor_events.py:623] Using proactor: IocpProactor
+2025-12-09 13:25:09 DEBUG [selector_events.py:59] Using selector: SelectSelector
+2025-12-09 13:25:09 INFO [MiddleServer.py:569] [MiddleServer] Server[ TCP WebSocket] start ......
+2025-12-09 13:25:09 DEBUG [MSwsHandler.py:14] check_origin
+2025-12-09 13:25:09 INFO [web.py:2161] 101 GET /ws (127.0.0.1) 1.01ms
+2025-12-09 13:25:09 DEBUG [MSwsHandler.py:25] connection open
+2025-12-09 13:25:09 DEBUG [MiddleServer.py:481] [MiddleServer] New connection :['', 0]
+2025-12-09 13:25:09 DEBUG [MiddleServer.py:83] [MiddleServer] A new user has entered the MiddleServer ['', 0]
+2025-12-09 13:25:09 DEBUG [MiddleServer.py:483] [MiddleServer] connection num is 1:
+2025-12-09 13:25:09 INFO [MiddleServer.py:101] {"token":"abc","remoteID":100,"userName":"Localhost|KF8Editor"}
+2025-12-09 13:25:09 INFO [MiddleServer.py:161] [MiddleServer] [remoteID = 100] online success
+2025-12-09 13:25:09 INFO [MiddleServer.py:174] [MiddleServer] connection login respstr:{"ret":0,"msg":"","address":"","port":0,"remoteID":100,"remoteList":[{"name": "Localhost|KF8Editor", "remoteID": 100, "online": 1}]}
+2025-12-09 13:26:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:27:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:28:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:29:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:30:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:31:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:32:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:33:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:34:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:35:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:36:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:37:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:38:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:39:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:40:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:41:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:42:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:43:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:44:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:45:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:46:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:47:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:48:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:49:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:50:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:51:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:52:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:53:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:54:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:55:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:56:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:57:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:58:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 13:59:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:00:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:01:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:02:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:03:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:04:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:05:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:06:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:07:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:08:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:09:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:10:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:11:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:12:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:13:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:14:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:15:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:16:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:17:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:18:10 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:19:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:20:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101
+2025-12-09 14:21:09 DEBUG [MiddleServer.py:254] [MiddleServer] heartbeat from=100, cmd=101

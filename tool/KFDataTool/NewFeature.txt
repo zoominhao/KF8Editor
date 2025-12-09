@@ -1,0 +1,2 @@
+2021.04.08
+ISREF=1 可以序列化反序列化kfRef<Mixobject> 类型

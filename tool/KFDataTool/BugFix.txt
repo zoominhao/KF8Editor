@@ -1,0 +1,6 @@
+问题1:
+class KFENGINERT_API VarScriptData : public KFScriptData
+加上属性
+///KFD(P=3,NAME=group,CNAME=脚本分组,DEFAULT=101,OR=1,ENUM=KFScriptGroupType,TYPE=int8)
+构建后
+丢失 VarScriptData的定义

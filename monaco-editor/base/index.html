@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>编辑</title>
+    <link rel="stylesheet" href="./style.css">
+    <script type="text/javascript">
+        window.nodeRequire = require;
+        delete window.require;
+        delete window.exports;
+        delete window.module;
+    </script>
+    <script>
+        const remote = nodeRequire('electron').remote;
+        function OpenDevPanel() {
+            remote.getCurrentWebContents().openDevTools();
+        }
+        
+    </script>
+    <link rel="stylesheet" type="text/css" href="../../themes/black/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+    <script src="../../libs/jquery.min.js"></script>
+    <script src="../../libs/jquery.easyui.min.js"></script>
+    <script src="../../src/ext/CommonUtil.js"></script>
+    <script src="../../libs/pixi.min.js"></script>
+    <script src="../../libs/require.js"></script>
+    <script src="../../src/ext/Native.js"></script>
+    <script src="./completion.js"></script>
+    <script src="./codelibrary.js"></script>
+    <script src="./codeparser.js"></script>
+    <script src="./compiler.js"></script>
+    <script src="./tabs.js"></script>
+    <script>
+
+        function onRootResize(width, height) {
+            if (window.app) {
+                window.app.layout();
+            }
+        } 
+    </script>
+
+
+</head>
+
+<body>
+
+    <div id="mainlayout" class="easyui-layout" data-options="fit:true,border:false">
+        <div data-options="region:'north',split:false,collapsedSize:20" style="height:32px">
+            <button type="submit" id="opendevpanel" onclick="OpenDevPanel()">调试面板</button>
+            <span>&nbsp;&nbsp;</span>
+            <select class="language">
+                <option>apex</option>
+                <option>azcli</option>
+                <option>bat</option>
+                <option>c</option>
+                <option>clojure</option>
+                <option>coffeescript</option>
+                <option>cpp</option>
+                <option>csharp</option>
+                <option>csp</option>
+                <option>css</option>
+                <option>dockerfile</option>
+                <option>fsharp</option>
+                <option>go</option>
+                <option>graphql</option>
+                <option>handlebars</option>
+                <option>html</option>
+                <option>ini</option>
+                <option>java</option>
+                <option>javascript</option>
+                <option>json</option>
+                <option>kotlin</option>
+                <option>less</option>
+                <option>lua</option>
+                <option>markdown</option>
+                <option>msdax</option>
+                <option>mysql</option>
+                <option>objective-c</option>
+                <option>pascal</option>
+                <option>perl</option>
+                <option>pgsql</option>
+                <option>php</option>
+                <option>plaintext</option>
+                <option>postiats</option>
+                <option>powerquery</option>
+                <option>powershell</option>
+                <option>pug</option>
+                <option>python</option>
+                <option>r</option>
+                <option>razor</option>
+                <option>redis</option>
+                <option>redshift</option>
+                <option>ruby</option>
+                <option>rust</option>
+                <option>sb</option>
+                <option>scheme</option>
+                <option>scss</option>
+                <option>shell</option>
+                <option>sol</option>
+                <option>sql</option>
+                <option>st</option>
+                <option>swift</option>
+                <option>tcl</option>
+                <option>typescript</option>
+                <option>vb</option>
+                <option>xml</option>
+                <option>yaml</option>
+            </select>
+            <a id="savecode" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'"
+                style="border: none;">保存</a>
+            <a id="compilecode" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-setting'"
+                style="border: none;">编译</a>
+            <a id="exportcode" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-redo'"
+                style="border: none;">导出函数</a>
+            <a id="backcode" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-undo'"  
+                style="border: none;">后退</a>
+            <a id="forwardcode" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-redo'"
+                style="border: none;">前进</a>
+        </div>
+        <!--    <div class="easyui-layout" data-options="region:'center',fit:true,border:false">-->
+        <div id="codelibpanel" class="easyui-panel"
+            data-options="region:'west',title:'代码库',split:true,collapsed:true,expandMode:'dock',collapsedSize:20,closed:false"
+            style="width: 240px;">
+            <div class="easyui-layout" style="width:100%;height:30px;">
+                <input id="codelibcodeonly" class="easyui-checkbox" labelWidth="36" label="代码" labelAlign="left" />
+                <input id="codelibsearch" class="f1 easyui-textbox" data-options="iconCls:'icon-search'"
+                    style="width:70%;height:100%" />
+            </div>
+            <div id="codelibtree" class="easyui-tree" data-options="animate:false"></div>
+        </div>
+        <div class="easyui-layout" data-options="region:'center',fit:true,border:false">
+            <div id="tt" class="easyui-tabs"
+                data-options="region:'north',fit:false,border:false,plain:true,narrow:false"
+                style="height: 32px;width:100%"></div>
+            <div id="root" data-options="region:'center',fit:true,border:false,onResize:onRootResize"></div>
+
+        </div>
+        <!--    </div>-->
+
+        <div id="foldernodemenu" class="easyui-menu" style="width:120px;">
+            <div onclick="window.app.codelib.EmitEventFromMenuContext('compile')" data-options="iconCls:'icon-setting'">
+                编译</div>
+            <div onclick="window.app.codelib.OpenFolderFromMenuContext()" data-options="iconCls:'icon-redo'">打开文件夹</div>
+        </div>
+
+        <div id="blknodemenu" class="easyui-menu" style="width:120px;">
+            <div onclick="window.app.codelib.EmitEventFromMenuContext('compile')" data-options="iconCls:'icon-setting'">
+                编译</div>
+            <div onclick="window.app.codelib.CreateCodeFileFromMenuContext()" data-options="iconCls:'icon-add'">新建代码文件
+            </div>
+            <div onclick="window.app.codelib.CreateFolderFromMenuContext()" data-options="iconCls:'icon-add'">新建文件夹
+            </div>
+            <div onclick="window.app.codelib.OpenFolderFromMenuContext(true)" data-options="iconCls:'icon-redo'">打开代码文件夹
+            </div>
+            <div onclick="window.app.codelib.OpenFolderFromMenuContext()" data-options="iconCls:'icon-redo'">打开所在文件夹
+            </div>
+        </div>
+
+        <div id="blkchildfoldernodemenu" class="easyui-menu" style="width:120px;">
+            <div onclick="window.app.codelib.CreateCodeFileFromMenuContext()" data-options="iconCls:'icon-add'">新建代码文件
+            </div>
+            <div onclick="window.app.codelib.CreateFolderFromMenuContext()" data-options="iconCls:'icon-add'">新建文件夹
+            </div>
+            <div onclick="window.app.codelib.RenameFromMenuContext()" data-options="iconCls:'icon-edit'">重命名</div>
+            <div onclick="window.app.codelib.DeleteFromMenuContext()" data-options="iconCls:'icon-remove'">删除</div>
+            <div onclick="window.app.codelib.OpenFolderFromMenuContext()" data-options="iconCls:'icon-redo'">打开所在文件夹
+            </div>
+        </div>
+
+        <div id="codenodemenu" class="easyui-menu" style="width:120px;">
+            <div onclick="window.app.codelib.EmitEventFromMenuContext('compile')" data-options="iconCls:'icon-setting'">
+                编译</div>
+            <div onclick="window.app.codelib.RenameFromMenuContext()" data-options="iconCls:'icon-edit'">重命名</div>
+            <div onclick="window.app.codelib.DeleteFromMenuContext()" data-options="iconCls:'icon-remove'">删除</div>
+            <div onclick="window.app.codelib.OpenFolderFromMenuContext()" data-options="iconCls:'icon-redo'">打开所在文件夹
+            </div>
+        </div>
+
+        <div id="notblkcodenodemenu" class="easyui-menu" style="width:120px;">
+            <div onclick="window.app.codelib.OpenFolderFromMenuContext()" data-options="iconCls:'icon-redo'">打开所在文件夹
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../dist/app.js"></script>
+
+</body>
+
+</html>

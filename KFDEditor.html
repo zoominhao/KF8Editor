@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Timeline</title>
+        <link rel="stylesheet" type="text/css" href="themes/metro/easyui.css">
+        <link rel="stylesheet" type="text/css" href="themes/icon.css">
+        <script type="text/javascript" src="libs/jquery.min.js"></script>
+        <script type="text/javascript" src="libs/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="libs/pixi.min.js"></script>
+        <script type="text/javascript" src="libs/require.js"></script>
+        <script type="text/javascript" src="libs/base64.js"></script>
+        <script type="text/javascript" src="libs/extends/datagrid-dnd.js"></script>
+        <script type="text/javascript" src="libs/extends/datagrid-detailview.js"></script>
+        <script type="text/javascript" src="src/ext/CommonUtil.js"></script>
+        <script type="text/javascript" src="src/Init.js"></script>
+        <script type="text/javascript" src="src/KFEditTool.js"></script>
+        <script type="text/javascript" src="src/KFDPropTool.js"></script>
+        <script type="text/javascript" src="src/KFDEditor.js"></script>
+        <script type="text/javascript" src="src/editorui/ScriptDescParser.js"></script>
+        <script type="text/javascript" src="src/FrameDataWindow.js"></script>
+        <style type="text/css">
+            .checkboxdef {
+                display: inline-block;
+                width: 16px;
+                height: 18px;
+                margin: 4px 0;
+                vertical-align: middle;
+                overflow: hidden;
+            }
+        </style>
+
+    </head>
+</head>
+<body>
+
+<table id="tg" class="easyui-treegrid" style="width:100%;height:auto;"
+       data-options="
+                iconCls: 'icon-ok',
+                fitColumns: true,
+                idField: 'id',
+                treeField: 'name'
+            ">
+    <thead>
+    <tr>
+        <th data-options="field:'name',width:60,editor:'text',formatter:KFDEditor.name_formatter">名称</th>
+        <th data-options="field:'value',width:40,editor:'text',formatter:KFDEditor.formatter">值</th>
+    </tr>
+    </thead>
+</table>
+
+<script type="text/javascript">
+
+    ///需要include的JS
+    let jspaths = ["KFData/Version"
+        , "KFData/Utils/FKByteArray"
+        , "KFData/Format/KFD"
+        , "KFData/Format/KFDJson"
+        , "KFData/Format/KFDName"
+        , "KFData/Format/KFDTable"
+        , "Core/FileIO/IKFFileIO"
+        , "Core/Log/KFLog"
+        , "Core/Meta/KFMetaManager"
+        , "Core/Misc/KFDate"
+        , "Core/Misc/KFDelegate"
+        , "Core/Misc/KFEventTable"
+        , "Core/Misc/KFPool"
+        , "Core/Misc/TypeEvent"
+        , "KFNetwork/Http/KFHttpFileIO"
+        , "KFNetwork/Http/URLLoader"
+        , "KFNetwork/Http/URLLoaderDataFormat"
+        , "KFNetwork/Http/URLRequest"
+        , "KFNetwork/Http/URLRequestHeader"
+        , "KFNetwork/Http/URLRequestMethod"
+        , "KFNetwork/Http/URLVariables"
+        , "KFNetwork/Http/Request/HttpMethod"
+        , "KFNetwork/Http/Request/HttpRequest"
+        , "KFNetwork/Http/Request/HttpResponseType"
+        , "KFNetwork/Http/Request/web/WebHttpRequest"];
+
+    for (let i = 0; i < jspaths.length; i++) {
+        jspaths[i] = "libs/kf/" + jspaths[i];
+    }
+
+    ///定义下JSON里的数据
+    let kfdfilePaths = ["Kungfu8.kfd", "kf8GamePlay.kfd"];
+    let pathroot = "./RAData/KFD/"
+
+    for (let i = 0; i < kfdfilePaths.length; i++) {
+        kfdfilePaths[i] = pathroot + kfdfilePaths[i];
+    }
+
+    loadandincludejs(jspaths, function (ret) {
+        HttpRequest_Type.meta = WebHttpRequest.Meta;
+        IKFFileIO_Type.meta = KFHttpFileIO.Meta;
+        IKFFileIO_Type.new_default();
+
+        let kfdtable = new KFDTable();
+
+        IKFFileIO_Type.instance.asyncLoadFileList(
+            kfdfilePaths
+            , function (succ, data, filepath) {
+                if (succ)
+                    kfdtable.add_kfd(JSON.parse(data));
+            }
+            , function (succ) {
+                ///所有KFD加载成功
+                LOG("All kfd load completed");
+
+                // let sp = new ScriptDescParser();
+                // let data = {"a": 1, "b": true, "c": false,"d":"这是一个结果"};
+                // let str = '[[[#a=1]&[#b|#c]]?#d:YYY]';
+                // let statement = new Statement(0, str.length - 1, str);
+                // ScriptDescParser.Parse(statement, data);
+
+                let kfdeditor = new KFDEditor($("#tg"), kfdtable);
+                let testdata = {"__cls__": "KFTimeBlockData"}
+
+                kfdeditor.Edit(testdata, {"target": {"__state__": "open"}});
+                //"KFTimeBlockData";
+            }
+            , "text");
+    });
+</script>
+</body>
+</html>

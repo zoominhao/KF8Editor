@@ -1,0 +1,38 @@
+{
+    "import_groups": [
+        {
+            "group": "KFDTest",
+            "export_info": {
+                "export_code_path": "GenTest/Serialize",
+                "export_typecode_path": "",
+                "export_api": "RA_API"
+            },
+            "import_code_paths": [
+                {
+                    "path": "GenTest",
+                    "headpath": ""
+                }
+            ]
+        }
+    ],
+    "import_kfd_path": "GenTest/import",
+    "export_code_path": "GenTest/Serialize",
+    "export_kfd_path": "GenTest/KFD",
+    "export_kfd_table": "KFDTable.json",
+    "export_vm3_path": "GenTest/Include/Generated",
+    "template_path": "../../Template",
+    "namespace": "KF",
+    "code_type": "cpp",
+    "data_type": "bytearr",
+    "info_props": [],
+    "typeDefTypes": [
+        {
+            "key": "kfstr",
+            "value": "FName",
+            "type": "kfstr"
+        }
+    ],
+    "projectname": "",
+    "include_kfd_paths": [],
+    "__cls__": "KFDataToolSetting"
+}

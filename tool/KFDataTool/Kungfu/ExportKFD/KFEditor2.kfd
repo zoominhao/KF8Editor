@@ -1,0 +1,160 @@
+[
+    {
+        "includes": [
+            "Core/Framework/GUI/UILayoutConfig.h"
+        ],
+        "class": "UIChildWindowItem",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "name",
+                "type": "kfstr"
+            },
+            {
+                "id": 2,
+                "name": "id",
+                "type": "int"
+            },
+            {
+                "id": 3,
+                "name": "metaType",
+                "type": "int"
+            }
+        ],
+        "clsid": 1123
+    },
+    {
+        "includes": [
+            "Core/Framework/GUI/UILayoutConfig.h"
+        ],
+        "class": "UIChildTabLayoutItem",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "tabID",
+                "type": "kfstr"
+            },
+            {
+                "id": 2,
+                "name": "layoutRatioX",
+                "type": "float"
+            },
+            {
+                "id": 3,
+                "name": "layoutRatioY",
+                "type": "float"
+            }
+        ],
+        "clsid": 1124
+    },
+    {
+        "includes": [
+            "Core/Framework/GUI/UILayoutConfig.h",
+            "UIChildTabLayoutItemF.h",
+            "UIChildWindowItemF.h"
+        ],
+        "class": "UITabLayoutConfig",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "tabID",
+                "type": "kfstr"
+            },
+            {
+                "id": 2,
+                "name": "layoutType",
+                "type": "int"
+            },
+            {
+                "id": 3,
+                "name": "childrenTabWins",
+                "otype": "UIChildTabLayoutItem",
+                "type": "arr"
+            },
+            {
+                "id": 4,
+                "name": "childrenUIWins",
+                "otype": "UIChildWindowItem",
+                "type": "arr"
+            }
+        ],
+        "clsid": 1125
+    },
+    {
+        "includes": [
+            "Core/Framework/GUI/UILayoutConfig.h",
+            "UITabLayoutConfigF.h"
+        ],
+        "class": "UILayoutConfig",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "tabConfigs",
+                "otype": "UITabLayoutConfig",
+                "type": "arr"
+            },
+            {
+                "id": 2,
+                "name": "maxTabUIID",
+                "type": "int"
+            },
+            {
+                "id": 3,
+                "name": "rootTabID",
+                "type": "kfstr"
+            }
+        ],
+        "clsid": 1126
+    },
+    {
+        "includes": [
+            "Core/Utils/Setup.h"
+        ],
+        "class": "SetupItem",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "键",
+                "name": "key",
+                "type": "kfstr"
+            },
+            {
+                "id": 2,
+                "cname": "值",
+                "name": "value",
+                "type": "kfstr"
+            }
+        ],
+        "clsid": 1127
+    },
+    {
+        "includes": [
+            "Core/Utils/Setup.h",
+            "SetupItemF.h",
+            "UILayoutConfigF.h"
+        ],
+        "class": "SetupConfig",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "项",
+                "name": "items",
+                "otype": "SetupItem",
+                "type": "arr"
+            },
+            {
+                "id": 2,
+                "name": "config",
+                "otype": "UILayoutConfig",
+                "type": "object"
+            }
+        ],
+        "clsid": 1128
+    }
+]

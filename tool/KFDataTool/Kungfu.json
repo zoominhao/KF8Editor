@@ -1,0 +1,115 @@
+{
+    "import_groups": [
+        {
+            "group": "KFYiiha",
+            "export_info": {
+                "export_code_path": "../../KFGamePlay/Yiiha/Serialize",
+                "export_typecode_path": "",
+                "export_api": ""
+            },
+            "import_code_paths": [
+                {
+                    "path": "../../KFGamePlay/Yiiha",
+                    "headpath": ""
+                }
+            ]
+        },
+        {
+            "group": "KFEditor2",
+            "export_info": {
+                "export_code_path": "../../KFEditor2/Serialize",
+                "export_typecode_path": "",
+                "export_api": ""
+            },
+            "import_code_paths": [
+                {
+                    "path": "../../KFEditor2",
+                    "headpath": ""
+                }
+            ]
+        },
+        {
+            "group": "EditModeDatas",
+            "export_info": {
+                "export_code_path": "../../KFApp/EditMode/Serialize",
+                "export_typecode_path": "",
+                "export_api": ""
+            },
+            "import_code_paths": [
+                {
+                    "path": "../../KFApp/EditMode/Data",
+                    "headpath": "Data"
+                }
+            ]
+        },
+        {
+            "group": "KFACTS",
+            "export_info": {
+                "export_code_path": "../../KFRuntime/Serialize",
+                "export_typecode_path": "",
+                "export_api": ""
+            },
+            "import_code_paths": [
+                {
+                    "path": "../../KFRuntime/ACTS",
+                    "headpath": ""
+                }
+            ]
+        },
+        {
+            "group": "KFScripts",
+            "export_info": {
+                "export_code_path": "../../KFRuntime/Serialize",
+                "export_typecode_path": "",
+                "export_api": ""
+            },
+            "import_code_paths": [
+                {
+                    "path": "../../KFRuntime/KFScript",
+                    "headpath": ""
+                }
+            ]
+        },
+        {
+            "group": "KFDDatas",
+            "export_info": {
+                "export_code_path": "../../KFRuntime/Serialize",
+                "export_typecode_path": "",
+                "export_api": ""
+            },
+            "import_code_paths": [
+                {
+                    "path": "../../KFRuntime/KFData",
+                    "headpath": ""
+                }
+            ]
+        },
+        {
+            "group": "KFEngineUE",
+            "export_info": {
+                "export_code_path": "../../KFExternal/KFEngineUE/Serialize",
+                "export_typecode_path": "",
+                "export_api": "KFENGINEUE_API"
+            },
+            "import_code_paths": [
+                {
+                    "path": "../../KFExternal/KFEngineUE/UI",
+                    "headpath": "UI"
+                }
+            ]
+        }
+    ],
+    "import_kfd_path": "Kungfu/ImportKFD",
+    "export_code_path": "../../KFRuntime/Serialize",
+    "export_kfd_path": "Kungfu/ExportKFD",
+    "export_kfd_table": "KFDTable.json",
+    "template_path": "Template",
+    "namespace": "KF",
+    "code_type": "cpp",
+    "data_type": "bytearr",
+    "info_props": [],
+    "typeDefTypes": [],
+    "projectname": "",
+    "include_kfd_paths": [],
+    "__cls__": "KFDataToolSetting"
+}

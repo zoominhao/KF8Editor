@@ -1,0 +1,25 @@
+{
+    "vFVector": {
+        "baseClass": "vAutoObject",
+        "completionItems": [
+        ]
+    },
+    "vKFTestObjectA": {
+        "baseClass": "vGCObject",
+        "completionItems": [
+            {
+                "label": "float AddToValue1(float param_0, float param_1)",
+                "insertText": "AddToValue1(float param_0, float param_1)"
+            },
+            {
+                "label": "float AutoParseMethod(float a, float b)",
+                "insertText": "AutoParseMethod(float a, float b)"
+            }
+        ]
+    },
+    "vKFTestObjectB": {
+        "baseClass": "vGCObject",
+        "completionItems": [
+        ]
+    }
+}

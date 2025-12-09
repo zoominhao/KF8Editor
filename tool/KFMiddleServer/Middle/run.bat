@@ -1,0 +1,2 @@
+python StartMiddleServer.py
+pause

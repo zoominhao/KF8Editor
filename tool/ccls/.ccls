@@ -1,0 +1,4 @@
+%compile_commands.json
+%h -x c++-header
+-I../CompileVMCode/include
+-I../KFDataTool/Template

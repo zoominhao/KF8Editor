@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Timeline</title>
+	<link rel="stylesheet" type="text/css" href="../themes/metro/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+
+	<script type="text/javascript" src="../libs/libsbefore.js"></script>
+	<script type="text/javascript" src="../libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../libs/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../libs/base64.js"></script>
+	<script type="text/javascript" src="../src/Timeline.js"></script>
+	<script type="text/javascript" src="../src/KFDEditor.js"></script>
+</head>
+<body>
+<div id="statecontainer" class="easyui-layout" style="width: 100%;height: 100%;border-style: none;">
+
+<div class="easyui-panel" data-options="region:'west',title:'状态集',split:true,collapsed:false,expandMode:'dock',collapsedSize:20, closed:false" style="width: 200px;">
+	<span><input id="remarkbox" class="easyui-checkbox" name="remarkbox" value="" style="height:16px; width: 16px;"><font size="2">备注显示</font></span>
+	<div id="stateselcontainer" data-options="region:'north',split:true,collapsed:false,expandMode:'dock',collapsedSize:20, closed:false" style="width:100%;height:60%;">
+		<div> <input id="stateCategory" class="f1 easyui-textbox" style="width: 100%;"></input> </div>
+		<ul id="statesel" class="easyui-tree" lines="true" style="width:100%;height:100%;border-style: none;">
+		</ul>
+	</div>
+
+	<div id="statepropcontainer" data-options="region:'south',split:false,collapsed:true, collapsedSize:20, closed:true" style="width:100%;height:40%;visibility: hidden">
+		<ul id="stateprop" class="easyui-tree" lines="true" style="width:100%;height:100%;border-style: none;">
+		</ul>
+	</div>
+</div>
+
+
+<div data-options="region:'center'">
+
+		<div id="timelinecontainer" class="easyui-layout" data-options="fit:true,border:false">
+			<div data-options="region:'north',maxHeight:30,border:false" style="height:30px;">
+				<div id="statediv" style="border: none;width: 180px;text-align: center;
+				overflow:hidden;white-space: nowrap;text-overflow: ellipsis;">
+					图层集合
+				</div>
+				<div id="hfDiv" style="position: absolute;left: 190px;right: 0;top: 0;overflow: hidden;">
+					<div id="headcontent" style="position: relative;">
+						<canvas id="hfFrame"></canvas>
+					</div>
+				</div>
+			</div>
+			<div data-options="region:'center',border:false">
+				<div style="width: 100%;height: 100%;overflow-x:hidden">
+					<table id="tldisplaytb" style="border: none;" cellspacing="0" cellpadding="0">
+						<tr valign="top">
+							<td style="width:190px;overflow: hidden;">
+								<table class="easyui-datagrid" id="tlHeader"
+									   data-options="border:false,autoRowHeight:false,singleSelect:true,showHeader:false,minWidth:190">
+								</table>
+							</td>
+							<td style="overflow: hidden;">
+								<div id="framecontent" style="position: relative;">
+								<canvas id="tlFrame"></canvas>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div data-options="region:'south',split:false,border:false"
+				 style="height:40px;padding:2px 2px;background-color: #222">
+				<div class="easyui-layout" data-options="fit:true">
+					<div data-options="region:'center',border:false">
+						<a id="addLY" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'"></a>
+						<a id="removeLY" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'"></a>
+						<span>第<span id="headframelabel">0</span>帧</span>
+						<span>循环:<input id="loopflag" class="easyui-checkbox" name="loop" checked="false"></span>
+						<span>继承:<input id="inheritLoop" class="easyui-checkbox" name="inheritLoop" checked="true"></span>
+						<span>次数: <input id="loopcount" class="easyui-textbox" value="0" style="width: 30px;"></span>
+						<a id="tlDetailBtn" href="#" style="color: #eeeeee;">更多</a>
+						<div id="tlvscrollbar" style="position: absolute;left: 330px;top: 0;right:0;overflow-y: hidden;">
+                            <div id="tlvscrolllcontent" style="height: 1px;"></div>
+                        </div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+</div>
+
+		<div id="tlframemenu" class="easyui-menu" style="width:120px;">
+			<div onclick="_global.timeline.AddBlock()" data-options="iconCls:'icon-add'">添加时间块</div>
+			<div onclick="_global.timeline.RemoveBlock()" data-options="iconCls:'icon-remove'">删除时间块</div>
+			<div class="menu-sep"></div>
+			<div onclick="_global.timeline.AddBlockFrame()">延长块帧</div>
+			<div onclick="_global.timeline.AddBlockFrame(true)">增加关键帧</div>
+			<div onclick="_global.timeline.RemoveBlockFrame()">删除关键帧</div>
+			<div class="menu-sep"></div>
+			<div id="frameDescBtn0" onclick="_global.timeline.AddOrRemoveEdBlock()" data-options="iconCls:'icon-add'">添加色块标识</div>
+			<div id="frameDescBtn1" onclick="_global.timeline.ProlongOrChangeEdBlockFrame()">延长色块标识</div>
+			<div class="menu-sep"></div>
+			<div onclick="_global.timeline.CopyFrame()" data-options="iconCls:'icon-copy'">复制</div>
+			<div onclick="_global.timeline.PasteFrame()" data-options="iconCls:'icon-paste'">粘贴</div>
+			<div onclick="_global.timeline.CutFrame()" data-options="iconCls:'icon-dcut'">剪切</div>
+		</div>
+
+		<div id="tllayermenu" class="easyui-menu" style="width:120px;">
+			<div onclick="_global.timeline.AddLayer(null,true)" data-options="iconCls:'icon-add'">增加层</div>
+			<div onclick="_global.timeline.RemoveLayer()" data-options="iconCls:'icon-remove'">删除层</div>
+			<div onclick="_global.timeline.ClearKeyFrames(false)" data-options="iconCls:'icon-remove'">清空层</div>
+			<div onclick="_global.timeline.BanLayer()" data-options="iconCls:'icon-remove'">禁(应)用层</div>
+			<div onclick="_global.timeline.ClearInvalidFrames()" data-options="iconCls:'icon-remove'">清空无效帧</div>
+			<div onclick="_global.timeline.SaveLayer()" data-options="iconCls:'icon-save'">保存层</div>
+			<div onclick="_global.timeline.CopyLayer()" data-options="iconCls:'icon-copy'">复制层</div>
+			<div onclick="_global.timeline.PasteLayer()" data-options="iconCls:'icon-paste'">粘贴层</div>
+			<div onclick="_global.timeline.CutLayer()" data-options="iconCls:'icon-dcut'">剪切层</div>
+			<div onclick="_global.timeline.SaveAudioLayer()" data-options="iconCls:'icon-save'">保存音频层</div>
+		</div>
+
+		<div id="colorwindow" class="easyui-window" title="Select Path"
+			 style="width:100px;height:70px;border: none;"
+			 data-options="iconCls:'icon-edit',modal:true,collapsible:false,minimizable:false,maximizable:false,resizable:true,scrollbarSize:0,closed:true">
+			<div class="easyui-panel" title="" style="width: 100%; height: 100%; border: none">
+				<div class="easyui-layout" style="width:100%;height:100%;">
+					<input id="frameDescColor" style=" width: 90px; height: 30px;">
+				</div>
+			</div>
+		</div>
+
+		<div id="statemenu" class="easyui-menu" style="width:120px;">
+			<span><input id="lockgenbox" class="easyui-checkbox" name="lockgenbox" value="" style="height:16px; width: 16px;"><font size="2">&nbsp&nbsp&nbsp&nbsp锁定受击框</font></span>
+			<div onclick="_global.timeline.RenameState()">添加备注</div>
+			<!--<div onclick="_global.timeline.LockGenBox()" data-options="iconCls:'icon-add'"><font size="2">增加层</font></div> -->
+		</div>
+
+		<div id="dlg" class="easyui-dialog" title="删数据告警" style="width:300px;height:150px;"
+        	data-options="iconCls:'icon-tip',resizable:true,modal:true,closed:true" buttons="#dlg-buttons">
+			关键帧数据被完全清空！
+		</div>		
+		<div id="dlg-buttons">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="_global.timeline.ClearKeyFrames(true); $('#dlg').dialog('close')">Ok</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#dlg').dialog('close')">Cancel</a>
+		</div>
+
+
+	<!-- Timelinedata Edit Window -->
+	<div id="timelineEdtWin" class="easyui-window" title="更多数据"
+		 style="width:400px;height:400px;border: none;"
+		 data-options="iconCls:'icon-edit',modal:false,collapsible:false,minimizable:false,maximizable:false,resizable:false,scrollbarSize:0,closed:true">
+		<div class="easyui-panel" title="" style="width: 100%; height: 100%; border: none;overflow-x: hidden;">
+
+			<div style="height: 50px;width: 100%;margin-top: 5px;margin-bottom: 5px;">
+				<span id="timelineEdtTile"></span>
+				<br/>
+				<span>遗传: <input id="inheritable" class="easyui-checkbox" name="inheritable" value=""></span>
+				<span>乎略脚本标识: <input id="igScriptLayer" class="easyui-textbox" value="" style="width: 120px;"></span>
+				<a id="timelineAddAnim" href="#" class="easyui-linkbutton">+Blend</a>
+			</div>
+
+			<table id="timelineEdtTG" class="easyui-treegrid" style="width:100%; height: 300px;"
+				   data-options="iconCls: 'icon-ok',fitColumns: true,idField: 'id',treeField: 'name'">
+				<thead>
+				<tr>
+					<th data-options="field:'name',width:60,editor:'text',formatter:KFDEditor.name_formatter">名称</th>
+					<th data-options="field:'value',width:40,editor:'text',formatter:KFDEditor.formatter">值</th>
+				</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+
+</div>
+
+	<script type="text/javascript">
+
+		var domui = {
+			 uiHeader:$('#tlHeader')
+			,headerDiv:$("#headerDiv")
+			,uiFrame:$('#tlFrame')
+			,frameDiv:$("#frameDiv")
+			,hfDiv:$("#hfDiv")
+			,hfFrame:$("#hfFrame")
+			,statesel:$("#statesel")
+			,stateCategory:$("#stateCategory")
+			,stateprop:$("#stateprop")
+			,stateselcontainer:$("#stateselcontainer")
+			,statepropcontainer:$("#statepropcontainer")
+			,lockgenbox:$("#lockgenbox")
+			,remarkbox:$("#remarkbox")
+			,addLY:$("#addLY")
+			,removeLY:$("#removeLY")
+			,frameattrib:$("#frameattrib")
+			,tbattrib:$("#tbattrib")
+			,loopflag:$("#loopflag")
+			,loopcount:$("#loopcount")
+			,inheritLoop:$("#inheritLoop")
+			,igScriptLayer:$("#igScriptLayer")
+			,inheritable:$("#inheritable")
+            ,vscroll:{
+			     bar:$("#tlvscrollbar")
+                ,content:$("#tlvscrolllcontent")
+                ,views:[$("#headcontent"),$("#framecontent")]
+			 }
+			 ,timelineEdtTile: $("#timelineEdtTile")
+			, timelineEdtWin: $("#timelineEdtWin")
+			, timelineAddAnim: $("#timelineAddAnim")
+			, timelineEdtTG: $("#timelineEdtTG")
+			, tlDetailBtn: $("#tlDetailBtn")
+		}
+		_global.timeline = new Timeline(domui,null);
+	</script>
+</body>
+</html>

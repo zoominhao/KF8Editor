@@ -1,0 +1,47 @@
+[{
+      "class"  : "KFScriptData"
+    , "extend" : ""
+    , "template":""
+     /// 有typedef 的类出输出一个枚举类
+    , "typedef":0
+     /// 定义一个typeid 可以通过typeid 来生成此类
+    , "typeid":0
+    , "CTYPEIDS":[]
+    , "cname":""
+    , "des":""
+    , "includes": [""]
+    , "propertys" : [
+       {"id":1,"name":"scriptType","type":"int32"
+        ,"default":"0","KEY":"CLASSID|TYPEID|CUSTOM"}
+      ,{"id":6,"name":"_f","type":"int32"
+       ,"cname":"定义一个中文名称","des":"这是一个什么样的变量"}
+      ,{"id":7,"name":"xx"
+       ,"type":"mixarr","otype":"KFScriptData"
+       ,"CALL":"OnDecodeNewOne"}
+      ,{"id":8,"name":"xx","type":"arr","otype":"KFScriptData"}
+      ,{"id":9,"name":"xx","type":"object","otype":"KFScriptData"}
+      ,{"id":10,"name":"xx","type":"mixobject","otype":"KFScriptData"}
+    ]
+
+    , "orprops":[]
+}]
+
+KFD(P=,NAME=,TYPE=,OTYPE=,USETYPE=,CNAME=,DES=,OR=,CALL=,CLEAR=
+, ENUM =
+, ENUM_ATTACH = TYPE|1|XXX#XX|2|XXX)
+
+所有mix都将可以触发CLEAR调用
+///如果TYPE=mixarr 则可以唤醒CALL=
+KFD(C,TYPEDEF=1,TYPEID=0,CTYPEIDS=1|2|3,CLASS=,EXTEND=,CNAME=,DES=,NOF=1)
+///CTYPEIDS 的定义是为了一个数据类型可以定义多个TYPE
+///KFD(C,CLASS=GSCreateItemScriptData,EXTEND=KFScriptData)
+///KFD(P=1,NAME=limitFrames,TYPE=int32)
+///KFD(P=2,NAME=clear,TYPE=bool)
+///KFD(P=3,NAME=checkUp,TYPE=bool)
+///KFD(P=4,NAME=limitMapY,TYPE=object,OTYPE=float32)
+///KFD(*)
+
+///KFD(C,CLASS=float32)
+///KFD(P=1,NAME=rawValue,TYPE=int32)
+///KFD(M,NAME=CallHello,PARAMS=int32;kfstr,RETURN=void)
+///KFD(*)

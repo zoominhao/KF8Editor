@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索</title>
+
+    <link rel="stylesheet" type="text/css" href="themes/black/easyui.css">
+    <link rel="stylesheet" type="text/css" href="themes/icon.css">
+    <script type="text/javascript" src="src/ext/Include.js"></script>
+
+</head>
+
+<style>
+    .spantexttip{ display:inline-block; width:70px;}
+</style>
+
+<body class="easyui-layout">
+    <div id="searchoptionsdiv" data-options="region:'north',split:false,collapsedSize:20" style="height: 128px">
+        <div>
+            <a id="opendevpanel" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-help'" style="border: none;">调试面板</a>
+            <input class="easyui-checkbox" id="searchreplace" labelWidth="80" label="启用替换" labelAlign="right" />
+            <input class="easyui-checkbox" id="searchdefaultfield" labelWidth="80" label="默认字段" labelAlign="right" />
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;搜索内容：</span>
+            <input class="easyui-checkbox" id="searchcontentobject" labelWidth="40" label="对象" labelAlign="right" checked="true" />
+            <input class="easyui-checkbox" id="searchcontentfieldname" labelWidth="50" label="字段名" labelAlign="right" />
+            <input class="easyui-checkbox" id="searchcontentfieldvalue" labelWidth="50" label="字段值" labelAlign="right" />
+        </div>
+        <div>
+            <span class="spantexttip">&nbsp;&nbsp;范围：&nbsp;</span>
+            <select class="easyui-combobox" id="searchtype" style="width: 100px">
+                <option value="spec">指定文件</option>
+                <option value="global">所有文件</option>
+            </select>
+            <span id="searchblktreespan">
+                <select id="searchblktree" class="easyui-combotree" style="width:360px;" data-options="editable:true,limitToList:true,delay:10,multiple:true,checkbox:true"></select>
+            </span>
+            <span id="searchdatatypespan">
+                <input class="easyui-checkbox" id="searchmeta" labelWidth="40" label="参数" labelAlign="right" checked="true" />
+                <input class="easyui-checkbox" id="searchgraph" labelWidth="50" label="流程图" labelAlign="right" checked="true" />
+                <input class="easyui-checkbox" id="searchtimeline" labelWidth="50" label="时间线" labelAlign="right" checked="true" />
+            </span>
+        </div>
+        <div id="searchobjectdiv">
+            <span class="spantexttip">&nbsp;&nbsp;对象：</span>
+            <span id="searchobjecttreespan">
+                <select id="searchobjecttree" class="easyui-combotree" style="width:360px;" data-options="editable:true,limitToList:true,delay:10"></select>
+            </span>
+            <input class="easyui-checkbox" id="searchobjectcondition" labelWidth="78" label="自定义条件" labelAlign="right" />
+            <span id="searchobjectconditiontreespan" style="display: none">
+                <select id="searchobjectconditiontree" class="easyui-combotree" style="width:360px;" data-options="editable:true,limitToList:true,delay:10"></select>
+            </span>
+        </div>
+        <div id="searchfieldnamediv" style="display: none">
+            <span class="spantexttip">&nbsp;&nbsp;字段名：</span>
+            <span id="searchfieldnametreespan">
+                <select id="searchfieldnametree" class="easyui-combotree" style="width:360px;" data-options="editable:true,limitToList:true,delay:10"></select>
+            </span>
+            <span id="searchfieldnameoption">
+                <input class="easyui-checkbox" id="searchfieldnamecase" labelWidth="50" label="大小写" labelAlign="right" />
+                <input class="easyui-checkbox" id="searchfieldnameword" labelWidth="40" label="全词" labelAlign="right" />
+                <input class="easyui-checkbox" id="searchfieldnameregex" labelWidth="40" label="正则" labelAlign="right" />
+                <input class="easyui-checkbox" id="searchfieldnamepath" labelWidth="40" label="路径" labelAlign="right" />
+            </span>
+        </div>
+        <div id="searchfieldvaluediv" style="display: none">
+            <span class="spantexttip">&nbsp;&nbsp;字段值：</span>
+            <span id="searchfieldvaluetreespan">
+                <select id="searchfieldvaluetree" class="easyui-combotree" style="width:360px;" data-options="editable:true,limitToList:true,delay:10"></select>
+            </span>
+            <span id="searchfieldvalueoption">
+                <input class="easyui-checkbox" id="searchfieldvaluecase" labelWidth="50" label="大小写" labelAlign="right" />
+                <input class="easyui-checkbox" id="searchfieldvalueword" labelWidth="40" label="全词" labelAlign="right" />
+                <input class="easyui-checkbox" id="searchfieldvalueregex" labelWidth="40" label="正则" labelAlign="right" />
+            </span>
+        </div>
+        <div id="searchfieldvaluereplacediv" style="display: none">
+            <span class="spantexttip">&nbsp;&nbsp;替换为：</span>
+            <span id="searchfieldvaluereplacetreespan">
+                <select id="searchfieldvaluereplacetree" class="easyui-combotree" style="width:360px;" data-options="editable:true,limitToList:true,delay:10"></select>
+            </span>
+            <input class="easyui-checkbox" id="searchfieldvaluereplaceonlysave" labelWidth="92" label="仅保存不替换" labelAlign="right" />
+            <input class="easyui-checkbox" id="searchfieldvaluereplacestatement" labelWidth="92" label="使用赋值语句" labelAlign="right" />
+        </div>
+        <div>
+            <span>&nbsp;</span>
+            <a id="dosearch" class="easyui-linkbutton" data-options="iconCls:'icon-search'">搜索</a>
+            <a id="doreplace" class="easyui-linkbutton" data-options="iconCls:'icon-redo'" style="display: none">替换</a>
+        </div>
+    </div>
+
+    <div id="searchresultsdiv" data-options="region:'center'">
+        <table id="searchresults" class="easyui-treegrid" style="width:100%;height:auto;"
+               data-options="iconCls: 'icon-ok',fitColumns: true, idField: 'id',treeField: 'name'">
+            <thead>
+            <tr>
+                <th data-options="field:'name',width:10">搜索结果</th>
+                <th data-options="field:'text',width:90"></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div id="searchresultsmenu" class="easyui-menu" style="width:120px;">
+        <div onclick="SearchImpl.SelectAllRows(true)" data-options="iconCls:'icon-ok'">全选</div>
+        <div onclick="SearchImpl.SelectAllRows(false)" data-options="iconCls:'icon-cancel'">全不选</div>
+    </div>
+
+    <script type="text/javascript" src="src/ext/PostInclude.js"></script>
+    <script type="text/javascript" src="src/search/Search.js"></script>
+    <script type="text/javascript" src="src/search/SearchWindow.js"></script>
+
+</body>
+</html>

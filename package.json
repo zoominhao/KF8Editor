@@ -1,0 +1,24 @@
+{
+  "name": "kfeditorh5",
+  "version": "1.0.0",
+  "description": "kungfu html editor",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "mocha --ui bdd --recursive ./test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^12.0.2",
+    "karma-mocha": "^2.0.1",
+    "mocha": "^10.0.0"
+  },
+  "dependencies": {
+    "@electron/remote": "^1.1.0",
+    "ffi-napi": "^4.0.3",
+    "find-pid-from-port": "^0.1.0",
+    "ref-array-di": "^1.2.2",
+    "tree-kill": "^1.2.2"
+  }
+}

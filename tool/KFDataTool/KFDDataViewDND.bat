@@ -1,0 +1,2 @@
+..\Python39\python.exe Py/pyKFDataViewMain.py -kfdpath=../Kungfu/ExportKFD -dragdropfile 
+@pause

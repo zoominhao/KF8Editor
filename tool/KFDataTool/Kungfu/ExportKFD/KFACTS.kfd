@@ -1,0 +1,2548 @@
+[
+    {
+        "includes": [
+            "Actor/KFActor.h"
+        ],
+        "cname": "普通物件",
+        "class": "KFActor",
+        "extend": "KFBlockTarget",
+        "propertys": [],
+        "orprops": [
+            {
+                "id": 1,
+                "name": "tickable",
+                "cname": "开启更新",
+                "default": "true",
+                "OR": 1,
+                "type": "bool"
+            }
+        ],
+        "clsid": 1011
+    },
+    {
+        "includes": [
+            "Context/KFBlockTarget.h"
+        ],
+        "newfunc": "NEW_NULL",
+        "cname": "块对象",
+        "class": "KFBlockTarget",
+        "extend": "KFGCObject",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "开启更新",
+                "default": "false",
+                "name": "tickable",
+                "type": "bool"
+            },
+            {
+                "id": 2,
+                "name": "vars",
+                "cname": "动态属性",
+                "type": "kfBytes",
+                "read": "ReadVars",
+                "write": "WriteVars"
+            }
+        ],
+        "clsid": 1012
+    },
+    {
+        "includes": [
+            "Data/Actor/KFActorConfig.h"
+        ],
+        "class": "KFActorConfig",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "enum": "KFActorType",
+                "default": "KFActorType::UNKNOW",
+                "name": "type",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "default": "",
+                "name": "name",
+                "type": "kfstr"
+            }
+        ],
+        "clsid": 1013
+    },
+    {
+        "includes": [
+            "Data/Actor/KFActorType.h"
+        ],
+        "nof": 1,
+        "class": "KFActorType",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "未知类型",
+                "default": "0",
+                "name": "UNKNOW",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "抽象类型",
+                "default": "1",
+                "name": "ISAY",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "实体类型",
+                "default": "2",
+                "name": "ENTITY",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1014
+    },
+    {
+        "includes": [
+            "Data/Asset/KFAssetData.h"
+        ],
+        "class": "KFAssetDatabaseItem",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "guid",
+                "type": "kfstr"
+            },
+            {
+                "id": 2,
+                "name": "path",
+                "type": "kfstr"
+            }
+        ],
+        "clsid": 1015
+    },
+    {
+        "includes": [
+            "Data/Asset/KFAssetData.h",
+            "KFAssetDatabaseItemF.h"
+        ],
+        "class": "KFAssetDatabase",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "items",
+                "otype": "KFAssetDatabaseItem",
+                "type": "arr"
+            }
+        ],
+        "clsid": 1016
+    },
+    {
+        "includes": [
+            "Data/Block/KFBlockTargetData.h"
+        ],
+        "nof": 1,
+        "class": "KFBlockTargetOption",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "自己",
+                "default": "0",
+                "name": "Ignore",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "创建",
+                "default": "1",
+                "name": "Create",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "附加",
+                "default": "2",
+                "name": "Attach",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1017
+    },
+    {
+        "includes": [
+            "Data/Block/KFBlockTargetData.h"
+        ],
+        "nof": 1,
+        "class": "BlkExecSide",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "不确定",
+                "default": "0",
+                "name": "UNKNOW",
+                "type": "uint8"
+            },
+            {
+                "id": 1,
+                "cname": "客户端",
+                "default": "1",
+                "name": "CLIENT",
+                "type": "uint8"
+            },
+            {
+                "id": 1,
+                "cname": "服务端",
+                "default": "2",
+                "name": "SERVER",
+                "type": "uint8"
+            },
+            {
+                "id": 1,
+                "cname": "都执行",
+                "default": "3",
+                "name": "BOTH",
+                "type": "uint8"
+            },
+            {
+                "id": 1,
+                "cname": "主客户端",
+                "default": "5",
+                "name": "SELFCLIENT",
+                "type": "uint8"
+            }
+        ],
+        "clsid": 1366
+    },
+    {
+        "includes": [
+            "Data/Block/KFBlockTargetData.h"
+        ],
+        "nof": 1,
+        "class": "KFBlockFuncType",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "代码",
+                "default": "0",
+                "name": "CodesFunc",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "流程",
+                "default": "1",
+                "name": "GraphFunc",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "脚本",
+                "default": "2",
+                "name": "ScriptFunc",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1018
+    },
+    {
+        "includes": [
+            "Data/Block/KFBlockTargetData.h"
+        ],
+        "class": "KFBlockFuncInfo",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "类型",
+                "enum": "KFBlockFuncType",
+                "default": "0",
+                "name": "type",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "name": "name",
+                "type": "kfname"
+            }
+        ],
+        "clsid": 1019
+    },
+    {
+        "includes": [
+            "Data/Block/KFBlockTargetData.h"
+        ],
+        "class": "KFBlockTargetData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "选项",
+                "enum": "KFBlockTargetOption",
+                "default": "0",
+                "name": "option",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "cname": "资产路径",
+                "unknowtags": [
+                    {
+                        "tag": "TEXTTYPE",
+                        "val": "filepath"
+                    }
+                ],
+                "name": "asseturl",
+                "type": "kfstr"
+            },
+            {
+                "id": 3,
+                "cname": "实例名",
+                "name": "instname",
+                "type": "kfname"
+            },
+            {
+                "id": 4,
+                "cname": "执行参数",
+                "enum": "BlkExecSide",
+                "default": "BlkExecSide::BOTH",
+                "name": "execSide",
+                "type": "uint8"
+            },
+            {
+                "id": 5,
+                "cname": "唯一ID",
+                "default": "0",
+                "name": "instsid",
+                "type": "int32"
+            },
+            {
+                "id": 6,
+                "cname": "初始化数据",
+                "name": "initBytes",
+                "type": "kfBytes"
+            }
+        ],
+        "clsid": 1020
+    },
+    {
+        "includes": [
+            "Data/Block/KFBlockTargetData.h",
+            "KFBlockTargetDataF.h",
+            "KFMetaDataF.h"
+        ],
+        "class": "KFNewBlkData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "实例参数",
+                "name": "targetData",
+                "otype": "KFBlockTargetData",
+                "type": "object"
+            },
+            {
+                "id": 2,
+                "cname": "原型参数",
+                "name": "metaData",
+                "otype": "KFMetaData",
+                "type": "object"
+            },
+            {
+                "id": 3,
+                "cname": "父级id",
+                "default": "0",
+                "name": "parentsid",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1365
+    },
+    {
+        "includes": [
+            "Data/CommKFDExport.h"
+        ],
+        "class": "float32",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "rawValue",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1021
+    },
+    {
+        "includes": [
+            "Data/CommKFDExport.h",
+            "float32F.h"
+        ],
+        "class": "Vector3",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "x",
+                "type": "object",
+                "otype": "float32"
+            },
+            {
+                "id": 2,
+                "name": "y",
+                "type": "object",
+                "otype": "float32"
+            },
+            {
+                "id": 3,
+                "name": "z",
+                "type": "object",
+                "otype": "float32"
+            }
+        ],
+        "clsid": 1022
+    },
+    {
+        "includes": [
+            "Data/CommKFDExport.h",
+            "float32F.h"
+        ],
+        "class": "Vector2",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "x",
+                "type": "object",
+                "otype": "float32"
+            },
+            {
+                "id": 2,
+                "name": "y",
+                "type": "object",
+                "otype": "float32"
+            }
+        ],
+        "clsid": 1023
+    },
+    {
+        "includes": [
+            "Data/CommKFDExport.h"
+        ],
+        "class": "KFEventData",
+        "propertys": [],
+        "clsid": 1024
+    },
+    {
+        "includes": [
+            "Data/CommKFDExport.h"
+        ],
+        "nof": 1,
+        "class": "KFCompareOperate",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "忽略",
+                "default": "0",
+                "name": "Ignore",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "等于",
+                "default": "1",
+                "name": "Equals",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "大于",
+                "default": "2",
+                "name": "Bigger",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "小于",
+                "default": "3",
+                "name": "Litter",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "大于等于",
+                "default": "4",
+                "name": "BiggerEquals",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "小于等于",
+                "default": "5",
+                "name": "LitterEquals",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1025
+    },
+    {
+        "includes": [
+            "Data/CommKFDExport.h"
+        ],
+        "class": "KFConditionData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "比较符",
+                "enum": "KFCompareOperate",
+                "name": "operate",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "cname": "条件值",
+                "name": "value",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1026
+    },
+    {
+        "includes": [
+            "Data/Graph/KFGraphConfig.h",
+            "KFGraphDataF.h"
+        ],
+        "class": "KFGraphConfig",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "false",
+                "name": "standalone",
+                "type": "bool"
+            },
+            {
+                "id": 2,
+                "name": "data",
+                "otype": "KFGraphData",
+                "type": "object"
+            }
+        ],
+        "clsid": 1027
+    },
+    {
+        "includes": [
+            "Data/Graph/KFGraphData.h",
+            "KFBlockFuncInfoF.h"
+        ],
+        "class": "KFGraphBlockIPinData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "name",
+                "type": "kfname"
+            },
+            {
+                "id": 2,
+                "cname": "参数类型",
+                "name": "type",
+                "type": "kfstr"
+            },
+            {
+                "id": 3,
+                "cname": "所属功能",
+                "name": "func",
+                "otype": "KFBlockFuncInfo",
+                "type": "object"
+            },
+            {
+                "id": 4,
+                "name": "label",
+                "type": "kfstr"
+            }
+        ],
+        "clsid": 1028
+    },
+    {
+        "includes": [
+            "Data/Graph/KFGraphData.h",
+            "KFBlockFuncInfoF.h"
+        ],
+        "class": "KFGraphBlockOPinData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "name",
+                "type": "kfname"
+            },
+            {
+                "id": 2,
+                "cname": "参数类型",
+                "name": "type",
+                "type": "kfstr"
+            },
+            {
+                "id": 3,
+                "cname": "所属功能",
+                "name": "func",
+                "otype": "KFBlockFuncInfo",
+                "type": "object"
+            },
+            {
+                "id": 4,
+                "cname": "输出目标",
+                "default": "0",
+                "name": "dest",
+                "type": "int32"
+            },
+            {
+                "id": 5,
+                "name": "label",
+                "type": "kfstr"
+            }
+        ],
+        "clsid": 1029
+    },
+    {
+        "includes": [
+            "Data/Graph/KFGraphData.h"
+        ],
+        "nof": 1,
+        "class": "KFGraphBlockType",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "普通",
+                "default": "0",
+                "name": "Normal",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "输入端口",
+                "default": "1",
+                "name": "InputPoint",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "输出事件",
+                "default": "2",
+                "name": "OutputPoint",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "输出域事件",
+                "default": "3",
+                "name": "OutputPointDomain",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "输出全局事件",
+                "default": "4",
+                "name": "OutputPointGlobal",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "事件",
+                "default": "5",
+                "name": "EventPoint",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "域事件",
+                "default": "6",
+                "name": "EventPointDomain",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "全局事件",
+                "default": "7",
+                "name": "EventPointGlobal",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "拉取节点",
+                "default": "8",
+                "name": "PullNode",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1030
+    },
+    {
+        "includes": [
+            "Data/Graph/KFGraphData.h"
+        ],
+        "nof": 1,
+        "class": "KFGraphExecType",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "正常",
+                "default": "0",
+                "name": "Normal",
+                "type": "int8"
+            },
+            {
+                "id": 1,
+                "cname": "主运行",
+                "default": "1",
+                "name": "Run",
+                "type": "int8"
+            },
+            {
+                "id": 1,
+                "cname": "辅运行",
+                "default": "2",
+                "name": "BackRun",
+                "type": "int8"
+            },
+            {
+                "id": 1,
+                "cname": "全运行",
+                "default": "3",
+                "name": "AllRun",
+                "type": "int8"
+            }
+        ],
+        "clsid": 1374
+    },
+    {
+        "includes": [
+            "Data/Graph/KFGraphData.h",
+            "Vector3F.h",
+            "KFBlockTargetDataF.h",
+            "KFFrameDataF.h",
+            "KFGraphBlockOPinDataF.h"
+        ],
+        "class": "KFGraphBlockData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "enum": "KFGraphBlockType",
+                "default": "0",
+                "name": "type",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "name": "name",
+                "type": "kfname"
+            },
+            {
+                "id": 3,
+                "name": "desc",
+                "type": "kfstr"
+            },
+            {
+                "id": 4,
+                "enum": "KFGraphExecType",
+                "default": "0",
+                "name": "execType",
+                "type": "int8"
+            },
+            {
+                "id": 5,
+                "name": "position",
+                "otype": "Vector3",
+                "type": "object"
+            },
+            {
+                "id": 6,
+                "name": "target",
+                "otype": "KFBlockTargetData",
+                "type": "object"
+            },
+            {
+                "id": 7,
+                "name": "frame",
+                "otype": "KFFrameData",
+                "type": "object"
+            },
+            {
+                "id": 8,
+                "name": "inputs",
+                "otype": "KFGraphBlockOPinData",
+                "type": "arr"
+            },
+            {
+                "id": 9,
+                "name": "outputs",
+                "otype": "KFGraphBlockOPinData",
+                "type": "arr"
+            }
+        ],
+        "clsid": 1031
+    },
+    {
+        "includes": [
+            "Data/Graph/KFGraphData.h",
+            "KFBoundF.h"
+        ],
+        "class": "KFGraphGroupData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "name",
+                "type": "kfstr"
+            },
+            {
+                "id": 2,
+                "name": "desc",
+                "type": "kfstr"
+            },
+            {
+                "id": 3,
+                "name": "bound",
+                "otype": "KFBound",
+                "type": "object"
+            }
+        ],
+        "clsid": 1032
+    },
+    {
+        "includes": [
+            "Data/Graph/KFGraphData.h",
+            "Vector3F.h"
+        ],
+        "class": "KFGraphCanvasData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "position",
+                "otype": "Vector3",
+                "type": "object"
+            }
+        ],
+        "clsid": 1033
+    },
+    {
+        "includes": [
+            "Data/Graph/KFGraphData.h",
+            "KFGraphGroupDataF.h",
+            "KFGraphBlockDataF.h",
+            "KFGraphCanvasDataF.h"
+        ],
+        "class": "KFGraphData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "groups",
+                "otype": "KFGraphGroupData",
+                "type": "arr"
+            },
+            {
+                "id": 2,
+                "name": "blocks",
+                "otype": "KFGraphBlockData",
+                "type": "arr"
+            },
+            {
+                "id": 3,
+                "name": "canvas",
+                "otype": "KFGraphCanvasData",
+                "type": "object"
+            }
+        ],
+        "clsid": 1034
+    },
+    {
+        "includes": [
+            "Data/Graph/KFGraphIOArgs.h"
+        ],
+        "nof": 1,
+        "class": "KFGraphArgOption",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "来自输入",
+                "default": "0",
+                "name": "InputFromBlock",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "来自脚本",
+                "default": "1",
+                "name": "EmbedFromScript",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1071
+    },
+    {
+        "includes": [
+            "Data/KFACTSEvent.h"
+        ],
+        "nof": 1,
+        "class": "KFEventScope",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "当前对象",
+                "default": "0",
+                "name": "Normal",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "当前域",
+                "default": "1",
+                "name": "Domain",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "全局",
+                "default": "2",
+                "name": "Global",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "父对象",
+                "default": "3",
+                "name": "Parent",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "GamePlay",
+                "default": "4",
+                "name": "GamePlay",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1035
+    },
+    {
+        "includes": [
+            "Data/KFACTSEvent.h"
+        ],
+        "nof": 1,
+        "class": "KFEventListenOption",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "添加监听",
+                "default": "0",
+                "name": "Listen",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "取消监听",
+                "default": "1",
+                "name": "Unlisten",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1036
+    },
+    {
+        "includes": [
+            "Data/KFACTSEvent.h"
+        ],
+        "class": "KFEventListenArg",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "运算符",
+                "enum": "KFCompareOperate",
+                "default": "0",
+                "name": "operate",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "cname": "目标值",
+                "default": "0",
+                "name": "value",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1037
+    },
+    {
+        "includes": [
+            "Data/KFACTSEvent.h"
+        ],
+        "nof": 1,
+        "class": "KFEventTypeEnum",
+        "extend": "",
+        "propertys": [],
+        "clsid": 1038
+    },
+    {
+        "includes": [
+            "Data/KFACTSEvent.h",
+            "KFEventListenArgF.h"
+        ],
+        "class": "KFEventListenInfo",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "事件类型",
+                "enum": "KFEventTypeEnum",
+                "name": "type",
+                "type": "kfname"
+            },
+            {
+                "id": 2,
+                "cname": "事件ID",
+                "default": "0",
+                "name": "id",
+                "type": "int32"
+            },
+            {
+                "id": 3,
+                "cname": "监听范围",
+                "enum": "KFEventScope",
+                "default": "0",
+                "name": "scope",
+                "type": "int32"
+            },
+            {
+                "id": 4,
+                "cname": "监听参数",
+                "name": "args",
+                "otype": "KFEventListenArg",
+                "type": "arr"
+            }
+        ],
+        "clsid": 1039
+    },
+    {
+        "includes": [
+            "Data/KFACTSEvent.h"
+        ],
+        "typedef": 1,
+        "typeid": 0,
+        "class": "KFACTSEventData",
+        "extend": "KFEventData",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "事件类型",
+                "KEY": "CUSTOM",
+                "name": "type",
+                "type": "kfname"
+            }
+        ],
+        "clsid": 1040
+    },
+    {
+        "includes": [
+            "Data/KFACTSEventDef.h"
+        ],
+        "nof": 1,
+        "class": "KFActorModelEventID",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "角色属性变化事件",
+                "default": "1",
+                "name": "ActorAttributeChanged",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1041
+    },
+    {
+        "includes": [
+            "Data/KFACTSEventDef.h",
+            "float32F.h"
+        ],
+        "cname": "角色模型事件类",
+        "unknowtags": [
+            {
+                "tag": "EventEnum",
+                "val": "KFActorModelEventID"
+            },
+            {
+                "tag": "ArgNames",
+                "val": "[属性ID:KFActorAttributeID|整数值|浮点值:float32]"
+            }
+        ],
+        "class": "KFActorModelEventData",
+        "extend": "KFACTSEventData",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "属性ID",
+                "default": "0",
+                "name": "aatt_id",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "cname": "整数值",
+                "default": "0",
+                "name": "aatt_intval",
+                "type": "int32"
+            },
+            {
+                "id": 3,
+                "cname": "浮点值",
+                "default": "0",
+                "name": "aatt_fval",
+                "otype": "float32",
+                "type": "object"
+            }
+        ],
+        "clsid": 1042
+    },
+    {
+        "includes": [
+            "Data/KFBound.h",
+            "Vector3F.h"
+        ],
+        "class": "KFBound",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "begin",
+                "otype": "Vector3",
+                "type": "object"
+            },
+            {
+                "id": 2,
+                "name": "end",
+                "otype": "Vector3",
+                "type": "object"
+            }
+        ],
+        "clsid": 1043
+    },
+    {
+        "includes": [
+            "Data/KFBox.h",
+            "Vector3F.h",
+            "float32F.h"
+        ],
+        "class": "KFBox",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "type",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "name": "center",
+                "otype": "Vector3",
+                "type": "object"
+            },
+            {
+                "id": 3,
+                "name": "size",
+                "otype": "Vector3",
+                "type": "object"
+            },
+            {
+                "id": 4,
+                "name": "radius",
+                "otype": "float32",
+                "type": "object"
+            },
+            {
+                "id": 5,
+                "name": "height",
+                "otype": "float32",
+                "type": "object"
+            }
+        ],
+        "clsid": 1044
+    },
+    {
+        "includes": [
+            "Data/KFColor.h"
+        ],
+        "class": "KFColorFloat",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "0",
+                "name": "a",
+                "type": "float"
+            },
+            {
+                "id": 2,
+                "default": "0",
+                "name": "r",
+                "type": "float"
+            },
+            {
+                "id": 3,
+                "default": "0",
+                "name": "g",
+                "type": "float"
+            },
+            {
+                "id": 4,
+                "default": "0",
+                "name": "b",
+                "type": "float"
+            }
+        ],
+        "clsid": 1045
+    },
+    {
+        "includes": [
+            "Data/KFColor.h"
+        ],
+        "class": "KFColor",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "0",
+                "name": "A",
+                "type": "uint8"
+            },
+            {
+                "id": 2,
+                "default": "0",
+                "name": "R",
+                "type": "uint8"
+            },
+            {
+                "id": 3,
+                "default": "0",
+                "name": "G",
+                "type": "uint8"
+            },
+            {
+                "id": 4,
+                "default": "0",
+                "name": "B",
+                "type": "uint8"
+            }
+        ],
+        "clsid": 1046
+    },
+    {
+        "includes": [
+            "Data/KFColor.h"
+        ],
+        "nof": 1,
+        "class": "KFDynamicColorType",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "基于颜色",
+                "default": "0",
+                "name": "Simple",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "基于因子",
+                "default": "1",
+                "name": "Factor",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1047
+    },
+    {
+        "includes": [
+            "Data/KFColor.h",
+            "KFColorFloatF.h",
+            "KFColorF.h"
+        ],
+        "class": "KFColorFactor",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "乘法因子",
+                "name": "multi",
+                "otype": "KFColorFloat",
+                "type": "object"
+            },
+            {
+                "id": 2,
+                "cname": "加法因子",
+                "name": "plus",
+                "otype": "KFColor",
+                "type": "object"
+            }
+        ],
+        "clsid": 1048
+    },
+    {
+        "includes": [
+            "Data/KFColor.h",
+            "KFColorF.h",
+            "KFColorFactorF.h"
+        ],
+        "class": "KFDynamicColor",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 2,
+                "cname": "类型",
+                "enum": "KFDynamicColorType",
+                "default": "0",
+                "name": "type",
+                "type": "int32"
+            },
+            {
+                "id": 3,
+                "cname": "持续时长【秒】",
+                "default": "0",
+                "name": "duration",
+                "type": "float"
+            },
+            {
+                "id": 4,
+                "cname": "变更周期【秒】",
+                "default": "0",
+                "name": "interval",
+                "type": "float"
+            },
+            {
+                "id": 5,
+                "cname": "颜色列表",
+                "name": "colors",
+                "otype": "KFColor",
+                "type": "arr"
+            },
+            {
+                "id": 6,
+                "cname": "因子列表",
+                "name": "factors",
+                "otype": "KFColorFactor",
+                "type": "arr"
+            }
+        ],
+        "clsid": 1049
+    },
+    {
+        "includes": [
+            "Data/KFColorPalette.h",
+            "KFDynamicColorF.h"
+        ],
+        "class": "KFColorPaletteDynamicItem",
+        "extend": "KFColorPaletteItemBase",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "编号",
+                "name": "id",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "cname": "动态颜色",
+                "name": "color",
+                "otype": "KFDynamicColor",
+                "type": "object"
+            }
+        ],
+        "clsid": 1050
+    },
+    {
+        "includes": [
+            "Data/KFColorPalette.h",
+            "KFColorF.h"
+        ],
+        "class": "KFColorPaletteSimpleItem",
+        "extend": "KFColorPaletteItemBase",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "编号",
+                "name": "id",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "cname": "颜色",
+                "name": "color",
+                "otype": "KFColor",
+                "type": "object"
+            }
+        ],
+        "clsid": 1051
+    },
+    {
+        "includes": [
+            "Data/KFColorPalette.h"
+        ],
+        "class": "KFColorPaletteCustomItem",
+        "extend": "KFColorPaletteItemBase",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "编号",
+                "name": "id",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "cname": "名字",
+                "name": "name",
+                "type": "kfstr"
+            }
+        ],
+        "clsid": 1052
+    },
+    {
+        "includes": [
+            "Data/KFColorPalette.h",
+            "KFColorPaletteSimpleItemF.h",
+            "KFColorPaletteDynamicItemF.h",
+            "KFColorPaletteCustomItemF.h"
+        ],
+        "class": "KFColorPalette",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "简单组",
+                "name": "simples",
+                "otype": "KFColorPaletteSimpleItem",
+                "type": "arr"
+            },
+            {
+                "id": 2,
+                "cname": "动态组",
+                "name": "dynamics",
+                "otype": "KFColorPaletteDynamicItem",
+                "type": "arr"
+            },
+            {
+                "id": 3,
+                "cname": "自定义组",
+                "name": "customs",
+                "otype": "KFColorPaletteCustomItem",
+                "type": "arr"
+            }
+        ],
+        "clsid": 1053
+    },
+    {
+        "includes": [
+            "Data/KFCurve.h"
+        ],
+        "nof": 1,
+        "class": "KFCurveBuiltin",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "-1",
+                "name": "LINEAR",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "0",
+                "name": "EaseInSine",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "1",
+                "name": "EaseOutSine",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "2",
+                "name": "EaseInOutSine",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "3",
+                "name": "EaseInQuad",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "4",
+                "name": "EaseOutQuad",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "5",
+                "name": "EaseInOutQuad",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "6",
+                "name": "EaseInCubic",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "7",
+                "name": "EaseOutCubic",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "8",
+                "name": "EaseInOutCubic",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "9",
+                "name": "EaseInQuart",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "10",
+                "name": "EaseOutQuart",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "11",
+                "name": "EaseInOutQuart",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "12",
+                "name": "EaseInQuint",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "13",
+                "name": "EaseOutQuint",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "14",
+                "name": "EaseInOutQuint",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "15",
+                "name": "EaseInExpo",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "16",
+                "name": "EaseOutExpo",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "17",
+                "name": "EaseInOutExpo",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "18",
+                "name": "EaseInCirc",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "19",
+                "name": "EaseOutCirc",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "20",
+                "name": "EaseInOutCirc",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "21",
+                "name": "EaseInBack",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "22",
+                "name": "EaseOutBack",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "23",
+                "name": "EaseInOutBack",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "24",
+                "name": "EaseInElastic",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "25",
+                "name": "EaseOutElastic",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "26",
+                "name": "EaseInOutElastic",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "27",
+                "name": "EaseInBounce",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "28",
+                "name": "EaseOutBounce",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "29",
+                "name": "EaseInOutBounce",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1054
+    },
+    {
+        "includes": [
+            "Data/KFPrefs.h"
+        ],
+        "class": "KFPrefsItem",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "key",
+                "type": "kfstr"
+            },
+            {
+                "id": 2,
+                "name": "value",
+                "type": "kfstr"
+            }
+        ],
+        "clsid": 1055
+    },
+    {
+        "includes": [
+            "Data/KFPrefs.h",
+            "KFPrefsItemF.h"
+        ],
+        "class": "KFPrefs",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "items",
+                "otype": "KFPrefsItem",
+                "type": "arr"
+            }
+        ],
+        "clsid": 1056
+    },
+    {
+        "includes": [
+            "Data/Meta/KFMetaData.h"
+        ],
+        "class": "KFClassData",
+        "extend": "KFGCObject",
+        "propertys": [],
+        "clsid": 1373
+    },
+    {
+        "includes": [
+            "Data/Meta/KFMetaData.h",
+            "KFPrefsF.h",
+            "KFClassDataF.h"
+        ],
+        "class": "KFMetaData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "名字",
+                "name": "name",
+                "type": "kfstr"
+            },
+            {
+                "id": 2,
+                "cname": "类名",
+                "name": "type",
+                "type": "kfname"
+            },
+            {
+                "id": 3,
+                "cname": "自定义参数",
+                "name": "fields",
+                "otype": "KFPrefs",
+                "type": "object"
+            },
+            {
+                "id": 4,
+                "cname": "对象数据",
+                "name": "data",
+                "type": "kfBytes"
+            },
+            {
+                "id": 5,
+                "name": "classData",
+                "cname": "类数据",
+                "type": "mixobject",
+                "otype": "KFClassData"
+            }
+        ],
+        "clsid": 1057
+    },
+    {
+        "includes": [
+            "Data/Timeline/KFTimelineConfig.h",
+            "float32F.h"
+        ],
+        "class": "KFTimelineRenderItem",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "0",
+                "name": "id",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "name": "name",
+                "type": "kfstr"
+            },
+            {
+                "id": 3,
+                "default": "0",
+                "name": "length",
+                "otype": "float32",
+                "type": "object"
+            },
+            {
+                "id": 4,
+                "default": "1.0f",
+                "name": "speed",
+                "otype": "float32",
+                "type": "object"
+            }
+        ],
+        "clsid": 1058
+    },
+    {
+        "includes": [
+            "Data/Timeline/KFTimelineConfig.h",
+            "KFTimelineRenderItemF.h"
+        ],
+        "class": "KFTimelineRenderData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "状态",
+                "name": "states",
+                "otype": "KFTimelineRenderItem",
+                "type": "arr"
+            }
+        ],
+        "clsid": 1059
+    },
+    {
+        "includes": [
+            "Data/Timeline/KFTimelineConfig.h",
+            "KFTimelineDataF.h",
+            "KFTimelineRenderDataF.h"
+        ],
+        "class": "KFTimelineConfig",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 2,
+                "cname": "状态",
+                "name": "states",
+                "otype": "KFTimelineData",
+                "type": "arr"
+            },
+            {
+                "id": 3,
+                "cname": "渲染",
+                "name": "renderdata",
+                "otype": "KFTimelineRenderData",
+                "type": "object"
+            }
+        ],
+        "clsid": 1060
+    },
+    {
+        "includes": [
+            "Data/Timeline/KFTimelineData.h",
+            "KFBoxF.h"
+        ],
+        "class": "KFFrameBox",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "攻击框发生变化",
+                "default": "false",
+                "name": "bAttackBoxDirty",
+                "type": "bool"
+            },
+            {
+                "id": 2,
+                "cname": "受击框发生变化",
+                "default": "false",
+                "name": "bHurtBoxDirty",
+                "type": "bool"
+            },
+            {
+                "id": 3,
+                "cname": "攻击框列表",
+                "name": "listAttackBox",
+                "otype": "KFBox",
+                "type": "arr"
+            },
+            {
+                "id": 4,
+                "cname": "受击框列表",
+                "name": "listHurtBox",
+                "otype": "KFBox",
+                "type": "arr"
+            }
+        ],
+        "clsid": 1061
+    },
+    {
+        "includes": [
+            "Data/Timeline/KFTimelineData.h",
+            "KFFrameBoxF.h",
+            "KFFrameDataF.h"
+        ],
+        "class": "KFKeyFrame",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "0",
+                "name": "id",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "cname": "显示帧",
+                "default": "0",
+                "name": "display",
+                "type": "int32"
+            },
+            {
+                "id": 3,
+                "name": "values",
+                "otype": "num1",
+                "type": "arr"
+            },
+            {
+                "id": 4,
+                "name": "box",
+                "otype": "KFFrameBox",
+                "type": "object"
+            },
+            {
+                "id": 5,
+                "name": "data",
+                "otype": "KFFrameData",
+                "type": "object"
+            }
+        ],
+        "clsid": 1062
+    },
+    {
+        "includes": [
+            "Data/Timeline/KFTimelineData.h"
+        ],
+        "nof": 1,
+        "class": "KFTimeBlockOpOption",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "无",
+                "default": "0",
+                "name": "None",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "坐标",
+                "default": "1",
+                "name": "Position",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "旋转",
+                "default": "2",
+                "name": "Rotation",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "缩放",
+                "default": "4",
+                "name": "SCALE",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "旋转3D",
+                "default": "8",
+                "name": "Rotation3D",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "倾斜",
+                "default": "16",
+                "name": "SKEW",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "2d综合",
+                "default": "23",
+                "name": "P3_R1_S3_SK2",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "3d综合",
+                "default": "13",
+                "name": "P3_R3_S3",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1063
+    },
+    {
+        "includes": [
+            "Data/Timeline/KFTimelineData.h"
+        ],
+        "class": "KFTimeBlockOpData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "0",
+                "name": "id",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "default": "0",
+                "name": "argcnt",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1064
+    },
+    {
+        "includes": [
+            "Data/Timeline/KFTimelineData.h",
+            "KFBlockTargetDataF.h",
+            "KFKeyFrameF.h"
+        ],
+        "class": "KFTimeBlockData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "label",
+                "type": "kfstr"
+            },
+            {
+                "id": 2,
+                "name": "desc",
+                "type": "kfstr"
+            },
+            {
+                "id": 3,
+                "default": "false",
+                "name": "keep",
+                "type": "bool"
+            },
+            {
+                "id": 4,
+                "default": "0",
+                "name": "begin",
+                "type": "int32"
+            },
+            {
+                "id": 5,
+                "default": "1",
+                "name": "end",
+                "type": "int32"
+            },
+            {
+                "id": 6,
+                "name": "target",
+                "otype": "KFBlockTargetData",
+                "type": "object"
+            },
+            {
+                "id": 7,
+                "cname": "数据格式",
+                "enum": "KFTimeBlockOpOption",
+                "default": "KFTimeBlockOpOption::None",
+                "name": "opOption",
+                "type": "int32"
+            },
+            {
+                "id": 8,
+                "name": "keyframes",
+                "otype": "KFKeyFrame",
+                "type": "arr"
+            }
+        ],
+        "clsid": 1065
+    },
+    {
+        "includes": [
+            "Data/Timeline/KFTimelineData.h"
+        ],
+        "class": "KFTimelayerOption",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "false",
+                "name": "standalone",
+                "type": "bool"
+            },
+            {
+                "id": 2,
+                "default": "false",
+                "name": "lock",
+                "type": "bool"
+            },
+            {
+                "id": 3,
+                "default": "true",
+                "name": "visible",
+                "type": "bool"
+            },
+            {
+                "id": 4,
+                "default": "true",
+                "name": "expand",
+                "type": "bool"
+            }
+        ],
+        "clsid": 1066
+    },
+    {
+        "includes": [
+            "Data/Timeline/KFTimelineData.h",
+            "KFTimelayerOptionF.h",
+            "KFTimeBlockDataF.h"
+        ],
+        "class": "KFTimelayerData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "name",
+                "type": "kfstr"
+            },
+            {
+                "id": 2,
+                "default": "0",
+                "name": "length",
+                "type": "int32"
+            },
+            {
+                "id": 3,
+                "name": "option",
+                "otype": "KFTimelayerOption",
+                "type": "object"
+            },
+            {
+                "id": 4,
+                "name": "tag",
+                "type": "kfstr"
+            },
+            {
+                "id": 5,
+                "name": "blocks",
+                "otype": "KFTimeBlockData",
+                "type": "arr"
+            }
+        ],
+        "clsid": 1067
+    },
+    {
+        "includes": [
+            "Data/Timeline/KFTimelineData.h",
+            "KFTimelayerDataF.h"
+        ],
+        "class": "KFTimelineData",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "0",
+                "name": "id",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "name": "name",
+                "type": "kfstr"
+            },
+            {
+                "id": 3,
+                "default": "0",
+                "name": "length",
+                "type": "int32"
+            },
+            {
+                "id": 4,
+                "default": "true",
+                "name": "loop",
+                "type": "bool"
+            },
+            {
+                "id": 5,
+                "cname": "层",
+                "name": "layers",
+                "otype": "KFTimelayerData",
+                "type": "arr"
+            }
+        ],
+        "clsid": 1068
+    },
+    {
+        "includes": [
+            "Data/Timeline/KFTimelineEvent.h"
+        ],
+        "nof": 1,
+        "class": "KFTimelineEvent",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "仅碰撞框事件",
+                "default": "-1",
+                "name": "EVENT_BOXONLY",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "空",
+                "default": "0",
+                "name": "EVENT_NULL",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "结束事件",
+                "default": "999",
+                "name": "EVENT_END",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "初始化事件",
+                "default": "10000",
+                "name": "EVENT_INIT",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "99990000",
+                "name": "EVENT_GLOBAL_FRAME_MASK",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "打击开始事件",
+                "default": "111",
+                "name": "EVENT_HIT_BEGIN",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "打击结束事件",
+                "default": "222",
+                "name": "EVENT_HIT_END",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "333",
+                "name": "EVENT_DISAPPEAR_FALSE",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "444",
+                "name": "EVENT_DISAPPEAR_TRUE",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1069
+    },
+    {
+        "includes": [
+            "Script/Global/GSFireGraphEventScript.h"
+        ],
+        "cname": "触发流程图事件",
+        "class": "GSFireGraphEventScriptData",
+        "extend": "KFScriptData",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "事件名",
+                "name": "evtname",
+                "type": "kfname"
+            },
+            {
+                "id": 2,
+                "cname": "事件范围",
+                "enum": "KFEventScope",
+                "default": "0",
+                "name": "evtscope",
+                "type": "int32"
+            }
+        ],
+        "orprops": [
+            {
+                "id": 1,
+                "name": "type",
+                "cname": "脚本类型",
+                "default": "GSFireGraphEventScriptData",
+                "OR": 1,
+                "type": "kfname"
+            },
+            {
+                "id": 3,
+                "name": "group",
+                "cname": "脚本分组",
+                "default": "4",
+                "OR": 1,
+                "enum": "KFScriptGroupType",
+                "type": "int8"
+            }
+        ],
+        "clsid": 1363
+    },
+    {
+        "includes": [
+            "Script/Global/GSLogScript.h"
+        ],
+        "class": "SDVector3",
+        "extend": "KFScriptData",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "0",
+                "name": "x",
+                "type": "num1"
+            },
+            {
+                "id": 2,
+                "default": "0",
+                "name": "y",
+                "type": "num1"
+            },
+            {
+                "id": 3,
+                "default": "0",
+                "name": "z",
+                "type": "num1"
+            }
+        ],
+        "orprops": [
+            {
+                "id": 1,
+                "name": "type",
+                "cname": "脚本类型",
+                "default": "SDVector3",
+                "OR": 1,
+                "type": "kfname"
+            }
+        ],
+        "clsid": 1367
+    },
+    {
+        "includes": [
+            "Script/Global/GSLogScript.h"
+        ],
+        "class": "SDFloat",
+        "extend": "KFScriptData",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "0",
+                "name": "value",
+                "type": "num1"
+            }
+        ],
+        "orprops": [
+            {
+                "id": 1,
+                "name": "type",
+                "cname": "脚本类型",
+                "default": "SDFloat",
+                "OR": 1,
+                "type": "kfname"
+            }
+        ],
+        "clsid": 1368
+    },
+    {
+        "includes": [
+            "Script/Global/GSLogScript.h"
+        ],
+        "class": "SDInt32",
+        "extend": "KFScriptData",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "0",
+                "name": "value",
+                "type": "int32"
+            }
+        ],
+        "orprops": [
+            {
+                "id": 1,
+                "name": "type",
+                "cname": "脚本类型",
+                "default": "SDInt32",
+                "OR": 1,
+                "type": "kfname"
+            }
+        ],
+        "clsid": 1369
+    },
+    {
+        "includes": [
+            "Script/Global/GSLogScript.h"
+        ],
+        "class": "SDString",
+        "extend": "KFScriptData",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "value",
+                "type": "kfstr"
+            }
+        ],
+        "orprops": [
+            {
+                "id": 1,
+                "name": "type",
+                "cname": "脚本类型",
+                "default": "SDString",
+                "OR": 1,
+                "type": "kfname"
+            }
+        ],
+        "clsid": 1370
+    },
+    {
+        "includes": [
+            "Script/Global/GSLogScript.h"
+        ],
+        "class": "GSLogScriptData",
+        "extend": "KFScriptData",
+        "cname": "输出日志",
+        "unknowtags": [
+            {
+                "tag": "Output",
+                "val": "[TestOutput1|TestOutput2]"
+            }
+        ],
+        "propertys": [
+            {
+                "id": 1,
+                "name": "text",
+                "type": "kfstr"
+            }
+        ],
+        "orprops": [
+            {
+                "id": 1,
+                "name": "type",
+                "cname": "脚本类型",
+                "default": "GSLogScriptData",
+                "OR": 1,
+                "type": "kfname"
+            },
+            {
+                "id": 3,
+                "name": "group",
+                "cname": "脚本分组",
+                "default": "4",
+                "OR": 1,
+                "enum": "KFScriptGroupType",
+                "type": "int8"
+            }
+        ],
+        "clsid": 1070
+    },
+    {
+        "includes": [
+            "Script/Global/GSPlayStateScript.h"
+        ],
+        "nof": 1,
+        "class": "KFPlayStateAction",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "开始",
+                "default": "0",
+                "name": "Play",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "停止",
+                "default": "1",
+                "name": "Stop",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1088
+    },
+    {
+        "includes": [
+            "Script/Global/GSPlayStateScript.h"
+        ],
+        "class": "GSPlayStateScriptData",
+        "extend": "KFScriptData",
+        "cname": "播放State",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "StateID",
+                "default": "0",
+                "name": "stateid",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "enum": "KFPlayStateAction",
+                "cname": "操作",
+                "default": "0",
+                "name": "action",
+                "type": "int32"
+            }
+        ],
+        "orprops": [
+            {
+                "id": 1,
+                "name": "type",
+                "cname": "脚本类型",
+                "default": "GSPlayStateScriptData",
+                "OR": 1,
+                "type": "kfname"
+            },
+            {
+                "id": 3,
+                "name": "group",
+                "cname": "脚本分组",
+                "default": "4",
+                "OR": 1,
+                "enum": "KFScriptGroupType",
+                "type": "int8"
+            }
+        ],
+        "clsid": 1364
+    },
+    {
+        "includes": [
+            "Script/KFScriptTypesBase.h"
+        ],
+        "class": "KFScriptArgYESNO",
+        "nof": 1,
+        "propertys": [
+            {
+                "id": 1,
+                "name": "CLOSE",
+                "type": "int32",
+                "default": "0",
+                "cname": "关闭"
+            },
+            {
+                "id": 1,
+                "name": "OPEN",
+                "type": "int32",
+                "default": "1",
+                "cname": "开启"
+            },
+            {
+                "id": 1,
+                "name": "OPEN",
+                "type": "int32",
+                "default": "2",
+                "cname": "其他2"
+            }
+        ],
+        "clsid": 1085
+    },
+    {
+        "includes": [
+            "Script/KFScriptTypesBase.h"
+        ],
+        "nof": 1,
+        "class": "KFScriptTypeEnum",
+        "extend": "",
+        "propertys": [],
+        "clsid": 1086
+    }
+]

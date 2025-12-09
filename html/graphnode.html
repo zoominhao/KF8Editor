@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>GraphNode</title>
+	<link rel="stylesheet" type="text/css" href="../themes/metro/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../themes/icon.css">
+	<script type="text/javascript" src="../libs/libsbefore.js"></script>
+	<script type="text/javascript" src="../libs/jquery.min.js"></script>
+	<script type="text/javascript" src="../libs/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../libs/pixi.min.js"></script>
+	<script type="text/javascript" src="../src/GraphNode.js"></script>
+	<script type="text/javascript" src="../src/GraphApp.js"></script>
+</head>
+<body>
+
+<div id="graphemnu" class="easyui-menu" style="width:120px;">
+	<div id="graphopennodetarget" onclick="_global.graph.OpenNodeTarget()" data-options="">打开节点目标</div>
+	<div id="graphopennodetargetsep" class="menu-sep"></div>
+	<div onclick="_global.graph.AddNode(0)" data-options="iconCls:'icon-add'">添加节点</div>
+	<div onclick="_global.graph.AddNode(1)" data-options="iconCls:'icon-add'">添加输入</div>
+	<div>
+		<span>添加输出</span>
+		<div style="width:120px;">
+			<div data-options="iconCls:'icon-add'" onclick="_global.graph.AddNode(2)">当前</div>
+			<div data-options="iconCls:'icon-add'" onclick="_global.graph.AddNode(3)">域</div>
+			<div data-options="iconCls:'icon-add'" onclick="_global.graph.AddNode(4)">全局</div>
+		</div>
+	</div>
+	<div>
+		<span>添加事件</span>
+		<div style="width:120px;">
+			<div data-options="iconCls:'icon-add'" onclick="_global.graph.AddNode(5)">当前</div>
+			<div data-options="iconCls:'icon-add'" onclick="_global.graph.AddNode(6)">域</div>
+			<div data-options="iconCls:'icon-add'" onclick="_global.graph.AddNode(7)">全局</div>
+		</div>
+	</div>
+	<div>
+		<span>添加拉取</span>
+		<div style="width:120px;">
+			<div data-options="iconCls:'icon-add'" onclick="_global.graph.AddNode(8)">默认</div>
+		</div>
+	</div>
+
+	<div id="graphorgscale" onclick="_global.graph.OrgScale()" data-options="iconCls:'icon-add'">尺寸100%</div>
+	<div id="graphbreakinputsep" class="menu-sep"></div>
+	<div id="graphbreakinput" data-options="iconCls:'icon-remove'" onclick="_global.graph.RemoveNodeInput()">断开输入</div>
+	<div id="graphnodedeletesep" class="menu-sep"></div>
+	<div id="graphnodedelete" data-options="iconCls:'icon-remove'" onclick="_global.graph.RemoveNode()">删除节点</div>
+	<div id="graphnodecopysep" class="menu-sep"></div>
+	<div id="graphnodecopy" data-options="iconCls:'icon-copy'" onclick="_global.graph.Copy()">拷贝节点</div>
+	<div id="graphnodepaste" data-options="iconCls:'icon-paste'" onclick="_global.graph.Paste()">粘贴节点</div>
+	<div id="graphnodecolorsep" class="menu-sep"></div>
+	<div id="graphnodecolor" data-options="" onclick="_global.graph.EditColor()">节点颜色...</div>
+	<div id="graphbreakpointsep" class="menu-sep"></div>
+	<div id="graphbreakpoint" data-options="iconCls:'icon-add'" onclick="_global.graph.DebugBreak()">断点</div>
+</div>
+
+<div id="nodecolorwindow" class="easyui-window" title="节点颜色"
+	 style="width:180px;height:100px;border: none;"
+	 data-options="iconCls:'icon-edit',modal:false,collapsible:false,minimizable:false,maximizable:false,resizable:false,scrollbarSize:0,closed:true">
+	<div><span>边框：</span><input id="nodelinecolor" class="easyui-color" style=" width: 90px; height: 30px;"></div>
+	<div><span>背景：</span><input id="nodebgcolor" class="easyui-color" style=" width: 90px; height: 30px;"></div>
+</div>
+
+<div class="easyui-layout" data-options="fit:true,border:false">
+	<!--<div data-options="region:'west',split:true,minWidth:250" style="width:300px;">
+		<div class="easyui-layout" data-options="border:false,fit:true">
+			<div data-options="region:'north',border:false" style="height: 40px;">
+				<table style="border: none;">
+					<tr><td><a href="#" class="easyui-linkbutton">创建页</a></td>
+						<td><input id="pagename" class="easyui-textbox" data-options="prompt:'Enter a page name...'"></td>
+					</tr>
+				</table>
+			</div>
+				<div data-options="region:'center',border:true">
+					<table id="graphnodeattrib" class="easyui-treegrid"
+						   data-options="
+					iconCls: 'icon-ok',
+					fitColumns: true,
+					idField: 'id',
+					treeField: 'name'
+										" style="width: 100%;">
+						<thead>
+						<tr>
+							<th data-options="field:'name',width:60,editor:'text',formatter:KFDEditor.name_formatter">名称</th>
+							<th data-options="field:'value',width:40,editor:'text',formatter:KFDEditor.formatter">值</th>
+						</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+	</div>-->
+	<div class="easyui-panel" data-options="region:'west',title:'节点树',split:true,collapsed:true,expandMode:'dock',collapsedSize:20, closed:false" style="width: 200px;">
+		<ul id="nodetree" class="easyui-tree" lines="true" style="width:100%;height:100%;border-style: none;">
+		</ul>
+	</div>
+	<div data-options="region:'center',fit:true,border:false" style="background-color: #00ee00">
+		<div class="easyui-layout" data-options="border:false,fit:true">
+			<div data-options="region:'north',border:false">
+				<div class="easyui-panel" style="padding:5px;border:none">
+					<a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g2',plain:true,selected:true">Default</a>
+				</div>
+			</div>
+			<div id ="stage" data-options="region:'center'" style="overflow: hidden;"></div>
+		</div>
+	</div>
+</div>
+
+
+
+	<script type="text/javascript">
+	let stage = $("#stage");
+	_global.graph = new GraphApp(stage);
+	</script>
+</body>
+</html>

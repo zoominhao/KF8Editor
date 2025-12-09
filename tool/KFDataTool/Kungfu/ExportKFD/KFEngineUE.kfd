@@ -1,0 +1,278 @@
+[
+    {
+        "includes": [
+            "UI/Base/KFUIWidgetParam.h"
+        ],
+        "class": "KFUIWidgetPropertyArg",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "enum": "UEUIProperty",
+                "default": "0",
+                "name": "propId",
+                "type": "int"
+            },
+            {
+                "id": 2,
+                "name": "propValue",
+                "type": "kfstr"
+            }
+        ],
+        "clsid": 1357
+    },
+    {
+        "includes": [
+            "UI/Base/KFUIWidgetParam.h",
+            "KFUIWidgetPropertyArgF.h"
+        ],
+        "class": "KFUIWidgetParam",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "Widget类型",
+                "enum": "UEUITypeEnum",
+                "name": "type",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "cname": "属性初始化",
+                "name": "propArgs",
+                "otype": "KFUIWidgetPropertyArg",
+                "type": "arr"
+            }
+        ],
+        "clsid": 1358
+    },
+    {
+        "includes": [
+            "UI/UEUI.h"
+        ],
+        "nof": 1,
+        "class": "UEUIPropertyValueType",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "0",
+                "name": "eInt32",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "1",
+                "name": "eFloat32",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "2",
+                "name": "eString",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "3",
+                "name": "eVec3",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1359
+    },
+    {
+        "includes": [
+            "UI/UEUI.h"
+        ],
+        "nof": 1,
+        "class": "UEUITypeEnum",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "0",
+                "name": "Unkown",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "1",
+                "name": "BluePrint",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "2",
+                "name": "CanvasPanel",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "30",
+                "name": "Button",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "31",
+                "name": "Image",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "32",
+                "name": "ProgressBar",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "33",
+                "name": "TextView",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "34",
+                "name": "TextInput",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "default": "35",
+                "name": "ListView",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1360
+    },
+    {
+        "includes": [
+            "UI/UEUI.h"
+        ],
+        "nof": 1,
+        "class": "UEUIProperty",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "默认属性",
+                "default": "0",
+                "name": "Default",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "Visible",
+                "default": "1",
+                "name": "Visible",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "Position",
+                "default": "2",
+                "name": "Position",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "Rotation",
+                "default": "3",
+                "name": "Rotation",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "Scale",
+                "default": "4",
+                "name": "Scale",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "ZOrder",
+                "default": "5",
+                "name": "ZOrder",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "Size",
+                "default": "6",
+                "name": "Size",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "材质",
+                "default": "21",
+                "name": "Mat",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "float型材质参数",
+                "default": "22",
+                "name": "MatArg_F",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "vector型材质参数",
+                "default": "23",
+                "name": "MatArg_V",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "texture型材质参数",
+                "default": "24",
+                "name": "MatArg_T",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "Img_BG",
+                "default": "25",
+                "name": "Img_BG",
+                "type": "int32"
+            },
+            {
+                "id": 1,
+                "cname": "Img_FG",
+                "default": "26",
+                "name": "Img_FG",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1361
+    },
+    {
+        "includes": [
+            "UI/UEUIConfig.h",
+            "UEUIWidgetConfigF.h"
+        ],
+        "class": "UEUIWidgetConfig",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "type",
+                "type": "int"
+            },
+            {
+                "id": 2,
+                "name": "id",
+                "type": "kfstr"
+            },
+            {
+                "id": 3,
+                "name": "widgets",
+                "otype": "UEUIWidgetConfig",
+                "type": "arr"
+            }
+        ],
+        "clsid": 1362
+    }
+]

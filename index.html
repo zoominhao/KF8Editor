@@ -1,0 +1,646 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Kungfu 8</title>
+	<link rel="stylesheet" type="text/css" href="themes/black/easyui.css">
+    <link rel="stylesheet" type="text/css" href="themes/icon.css">
+
+    <style type="text/css">
+        .noscrolldiv::-webkit-scrollbar {
+            display: none; /*Safari and Chrome*/
+            /*width:0;*/
+        }
+        .noscrolldiv {
+            -ms-overflow-style: none; /*IE 10+*/
+            overflow: -moz-scrollbars-none; /*Firefox*/
+        }
+        .checkboxdef {
+            display: inline-block;
+            width: 16px;
+            height: 18px;
+            margin: 4px 0;
+            vertical-align: middle;
+            overflow: hidden;
+        }
+        .unselectable {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+
+    <script type="text/javascript" src="src/ext/Include.js"></script>
+    <script type="text/javascript" src="src/KFEditorApp.js"></script>
+    <script type="text/javascript" src="src/window/BaseWindow.js"></script>
+    <script type="text/javascript" src="src/window/KFDEdtWrapWindow.js"></script>
+    <script type="text/javascript" src="src/net/RemoteLogWindow.js"></script>
+    <script type="text/javascript" src="src/buff/BuffWindow.js"></script>
+    <script type="text/javascript" src="src/debug/BreakDebuggerTool.js"></script>
+    <script type="text/javascript" src="src/debug/BreakDebuggerMain.js"></script>
+    <script type="text/javascript" src="src/debug/NetDebugMain.js"></script>
+
+</head>
+<body class="easyui-layout">
+
+	<div data-options="region:'north',split:false,collapsedSize:20" style="height:32px;white-space: nowrap">
+        <a id="setting" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-setting'"  style="border: none;">设置</a>
+        <a id="menucreateblk" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="border: none;">BLK</a>
+        <a id="menusaveblk" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'"  style="border: none;">保存</a>
+        <a id="menuimport" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-more'"  style="border: none;">导入</a>
+        <a id="rebuildrefs" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload'"  style="border: none;">刷新依赖</a>
+        <a id="debugrun" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"  style="border: none;">调试</a>
+        <input id="apphtmls" class="easyui-combobox" data-options="valueField:'value',textField:'label'">
+ 
+        <a id="undo" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-undo'"  style="border: none;">撤销</a>
+        <a id="redo" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-redo'"  style="border: none;">重做</a>
+
+        <a id="search" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'"  style="border: none;">搜索...</a>
+
+        <input class="easyui-combobox" id="netobjs" data-options="valueField:'value',textField:'label'" />
+
+        <input class="easyui-checkbox" id="ueplaying" labelWidth="40" label="编辑:" labelAlign="right" disabled/>
+        <input class="easyui-checkbox" id="ueBoxDisplay" labelWidth="60" label="碰撞框:" labelAlign="right" checked="checked" disabled/>
+
+        <span id = "plotSpan" hidden>
+            <a id="plotplay" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-play'"  style="border: none; visibility: visible"></a>
+            <a id="plotpause" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-pause'"  style="border: none; visibility: visible"></a>
+        </span>
+        <span id = "todSpan" hidden>
+            <a id="todplay" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-play'"  style="border: none; visibility: visible"></a>
+            <a id="todpause" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-pause'"  style="border: none; visibility: visible"></a>
+            <input id="todFastRate" href="#" class="easyui-numberbox" label="倍数" labelWidth="40" value="1" data-options="valueField:'value',textField:'label', min:0, max:300" style="width: 80px;backface-visibility: hidden">
+        </span>
+    </div>
+
+    <div data-options="region:'east',title:'编辑目标',split:true,collapsed:false,expandMode:'dock',collapsedSize:20" style="width:240px;padding:0px;">
+        
+        <div id = "edittype" class="easyui-tabs" style="width:100%;height:100%;">
+            <div title="本地">
+                <div class="easyui-layout" style="width:100%;height:30px;">
+                    <input id="blklibsearch" class="f1 easyui-textbox" data-options="iconCls:'icon-search'" style="width:99%;height:30px"/>
+                </div>
+                <ul id="blklibui" class="easyui-tree" data-options="animate:false"></ul>
+            </div>
+            <div title="编辑">
+                <ul id="rpcobjsoffline" class="easyui-tree" data-options="animate:false"></ul>
+            </div>
+            <div title="游戏">
+                <ul id="rpcobjsonline"  class="easyui-tree" data-options="animate:false"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div data-options="region:'center'">
+
+        <div id ="mainlayout" class="easyui-layout" data-options="fit:true,border:false">
+
+            <div data-options="region:'center'">
+             <div id="tt" class="easyui-tabs"  data-options="fit:true,border:false,plain:true,narrow:false">
+                 <div data-options="title:'参数'" style="overflow-x: hidden;">
+                     <table id="blkattrib" class="easyui-treegrid" style="width:100%;height:auto;border:none"
+                            data-options="
+                        iconCls: 'icon-ok',
+                        fitColumns: true,
+                        idField: 'id',
+                        treeField: 'name'
+                                            ">
+                         <thead>
+                         <tr>
+                             <th data-options="field:'name',width:60,editor:'text',formatter:KFDEditor.name_formatter">名称</th>
+                             <th data-options="field:'value',width:40,editor:'text',formatter:KFDEditor.formatter">值</th>
+                         </tr>
+                         </thead>
+                     </table>
+                 </div>
+                 <div data-options="title:'流程图',href:'html/graphnode.html'"></div>
+                 <div data-options="title:'时间图',href:'html/timeline.html'"></div>
+              </div>
+            </div>
+
+            <div id="previewPanel" class="easyui-panel" title="视图"
+                 data-options="region:'south',split:true,collapsed:true,tools:'#viewtool',footer:'#ft'"
+                 style="height: 99%;display: flex;overflow: hidden">
+                    <div style="width: 100%;height: 100%; overflow: hidden">
+                        <iframe id="previewFrame" style="width: 100%;height: 100%;overflow: hidden" frameborder="0"></iframe>
+                    </div>
+                <div id="viewtool">
+                    <a href="#" class="icon-reload" onclick="_global.ipcpreview.ReloadPreview()"></a>
+                </div>
+
+                <div id="ft" style="height: 30px; vertical-align: middle;">
+                    <span>背景:</span> <input id="bgcolorsel" class="easyui-color" style=" width: 90px; height: 100%;">
+                    <span>缩放:</span>
+                    <select name="scaleSelect" id="scale-select">
+                        <option value="0.1">10%</option>
+                        <option value="0.25">25%</option>
+                        <option value="0.5">50%</option>
+                        <option value="1.0" selected>100%</option>
+                        <option value="1.5">150%</option>
+                        <option value="2.0">200%</option>
+                    </select>
+                    <span>对齐:</span>
+                    <select name="alignSelect" id="align-select">
+                        <option value="0">左上</option>
+                        <option value="1">居中</option>
+                    </select>
+                </div>
+            </div>
+
+            <div data-options="title:'属性',region:'east',split:true,minWidth:280" style="width: 10%;">
+                <div id="attribspanel" class="easyui-tabs" data-options="fit:true,border:false,plain:true,tabPosition:'bottom'">
+                    <div data-options="title:'时间图属性',border:false">
+                        <div id="timelineTT" class="easyui-tabs" data-options="border:false,narrow:true" style="width:100%;height:100%">
+                            <div id="frameproperty" title="帧属性" style="display:none;overflow-x: hidden;">
+                                <table id="frameattrib" class="easyui-treegrid" style="width:100%;height:auto;"
+                                       data-options="
+                iconCls: 'icon-ok',
+                fitColumns: true,
+                idField: 'id',
+                treeField: 'name'
+            						">
+                                    <thead>
+                                    <tr>
+                                        <th data-options="field:'name',width:60,editor:'text',formatter:KFDEditor.name_formatter">名称</th>
+                                        <th data-options="field:'value',width:40,editor:'text',formatter:KFDEditor.formatter">值</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div title="时间块" data-options="" style="overflow-x: hidden;display:none;">
+                                <table id="tbattrib" class="easyui-treegrid" style="width:100%;height:auto;"
+                                       data-options="
+                iconCls: 'icon-ok',
+                fitColumns: true,
+                idField: 'id',
+                treeField: 'name'
+            						">
+                                    <thead>
+                                    <tr>
+                                        <th data-options="field:'name',width:60,editor:'text',formatter:KFDEditor.name_formatter">名称</th>
+                                        <th data-options="field:'value',width:40,editor:'text',formatter:KFDEditor.formatter">值</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-options="title:'流程图属性',border:false">
+                        <div class="easyui-layout" data-options="border:false,fit:true">
+                            <div data-options="region:'north',border:false" style="height: 40px;overflow: hidden;">
+                                <table style="border: none;">
+                                    <tr><td><a href="#" class="easyui-linkbutton">创建页</a></td>
+                                        <td><input id="pagename" class="easyui-textbox" data-options="prompt:'Enter a page name...'"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div data-options="region:'center',border:true">
+                                <table id="graphnodeattrib" class="easyui-treegrid"
+                                       data-options="
+                            iconCls: 'icon-ok',
+                            fitColumns: true,
+                            idField: 'id',
+                            treeField: 'name'
+                                                " style="width: 100%;">
+                                    <thead>
+                                    <tr>
+                                        <th data-options="field:'name',width:60,editor:'text',formatter:KFDEditor.name_formatter">名称</th>
+                                        <th data-options="field:'value',width:40,editor:'text',formatter:KFDEditor.formatter">值</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div data-options="region:'south'" style="height: 30px;display: flex;overflow: hidden">
+      <div id="edstatelabel" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden"></div>
+    </div>
+
+    <div id="blknewwin" class="easyui-window" title="新建BLK"
+         style="width:500px;height:300px;border: none;"
+         data-options="iconCls:'icon-tip',modal:true,collapsible:false,minimizable:false,maximizable:false,resizable:false,closed:true">
+
+        <div class="easyui-panel" title=""
+             style="width:100%; height:100%;padding:10px;border:none;">
+                <table style="width:100%; height:100%;padding:5px">
+                    <tr>
+                        <td style="width: 70px;">名称:</td>
+                        <td>
+                            <input id="blknewname" class="f1 easyui-textbox" style="width: 100%;"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>类型:</td>
+                        <td>
+                            <select id="blktypesel" class="easyui-combobox" style="width: 100%;">
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a id="blkselpath" class="easyui-linkbutton" data-options="iconCls:'icon-search'"></a></td>
+                        <td><input id="blksavepath" class="f1 easyui-textbox" style="width: 100%;"></input></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <a id="blknewok" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a>
+                            <a id="blknewno" class="easyui-linkbutton" data-options="iconCls:'icon-no'">取消</a>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+
+    </div>
+
+    <div id="textnewwin" class="easyui-window" title="新建"
+         style="width:500px;height:200px;border: none;"
+         data-options="iconCls:'icon-tip',modal:true,collapsible:false,minimizable:false,maximizable:false,resizable:false,closed:true">
+
+        <div class="easyui-panel" title=""
+             style="width:100%; height:100%;padding:10px;border:none;">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 50px;">值</td>
+                    <td>
+                        <input id="textnewval" class="f1 easyui-textbox" style="width: 100%;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 50px;">名称</td>
+                    <td>
+                        <input id="textnewname" class="f1 easyui-textbox" style="width: 100%;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <a id="textnewok" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a>
+                        <a id="textnewno" class="easyui-linkbutton" data-options="iconCls:'icon-no'">取消</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div id="contextSetting" class="easyui-window" title="工作空间设置"
+         style="width:500px;height:300px;border: none;"
+         data-options="iconCls:'icon-tip',modal:true,closable:false,collapsible:false,minimizable:false,maximizable:false,resizable:false,closed:true">
+
+        <div class="easyui-panel" title=""
+             style="width:100%; height:100%;padding:10px;border:none;">
+            <table style="width:100%; height:100%;padding:5px">
+                <tr>
+                    <td style="width: 90px;height: 30px;">历史记录:</td>
+                    <td>
+                        <select id="settinghistory" class="easyui-combobox" style="width: 100%;"></select>
+                    </td>
+                    <td style="width:25px;"></td>
+                </tr>
+
+                <tr>
+                    <td style="width: 90px;">应用程序:</td>
+                    <td>
+                        <input id="settingapppath" class="f1 easyui-textbox" style="width: 100%;"></input>
+                    </td>
+                    <td style="width:25px;"><a class="easyui-linkbutton" data-options="iconCls:'icon-search'" id="settingapppathSEL"></a></td>
+                </tr>
+                <tr>
+                    <td>KFD目录:</td>
+                    <td>
+                        <input id="settingkfdpath" class="f1 easyui-textbox" style="width: 100%;"></input>
+                    </td>
+                    <td style="width:25px;"><a class="easyui-linkbutton" data-options="iconCls:'icon-search'" id="settingkfdpathSEL"></a></td>
+                </tr>
+                <tr>
+                    <td>应用数据:</td>
+                    <td>
+                        <input id="settingappdatapath" class="f1 easyui-textbox" style="width: 100%;"></input>
+                    </td>
+                    <td style="width:25px;"><a class="easyui-linkbutton" data-options="iconCls:'icon-search'" id="settingappdatapathSEL"></a></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <a id="settingok" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a>
+                        <a id="settingcancel" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">关闭</a>
+                        <a id="exportKFD" class="easyui-linkbutton" data-options="iconCls:'icon-reload'">KFD生成</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="blklibmenu" class="easyui-menu" style="width:120px;">
+        <div onclick="_global.editor.newblkwin.Open(_global.CopyValue);" data-options="iconCls:'icon-add'">新建BLK</div>
+        <div onclick="_global.editor.newtxtwin.Open(_global.CopyValue,_global.editor.CreateFolder);" data-options="iconCls:'icon-add'">新建文件夹</div>
+        <div onclick="_global.editor.OpenFolder(_global.CopyValue);" data-options="iconCls:'icon-add'">打开文件夹</div>
+        <div data-options="iconCls:'icon-add'">
+            <span>导入</span>
+            <div>
+                <div>AnimationCC</div>
+                <div onclick="_global.editor.ImportExcelToDataTable(_global.CopyValue);">Excel To DataTable</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="blkfilemenu" class="easyui-menu" style="width:120px;">
+        <div onclick="_global.editor.OpenNewWindow(_global.CopyValue);" data-options="iconCls:'icon-add'">新窗口打开文件</div>
+        <div onclick="_global.editor.DeleteBlkFile(_global.CopyValue);" data-options="iconCls:'icon-add'">删除文件</div>
+    </div>
+
+    <div id="boxGen" class="easyui-window" title="生成受击框"
+         style="width:600px;height:300px;border: none;"
+         data-options="iconCls:'icon-tip',modal:true,closable:false,collapsible:false,minimizable:false,maximizable:false,resizable:false,closed:true">
+
+        <div class="easyui-panel" title=""
+             style="width:100%; height:100%;padding:10px;border:none;">
+            <table style="width:100%; height:100%;padding:5px">
+                <tr>
+                    <td>
+                        全量生成:
+                    </td>
+                    <td>
+                        <input class="easyui-checkbox" id="genAll" checked="checked"/>
+                    </td>
+                    <td>
+                        只生成轴:
+                    </td>
+                    <td>
+                        <input class="easyui-checkbox" id="genFrameOnly"/>
+                    </td>
+                </tr>
+                <tr id="genExpand">
+                    <td>
+                        扩展:
+                    </td>
+                    <td>
+                        <input class="easyui-numberbox" id="genExpandX" style="width: 60px;" value="6" data-options="min:0,precision:2">
+                    </td>
+                    <td>
+                        <input class="easyui-numberbox" id="genExpandY" style="width: 60px;" value="12" data-options="min:0,precision:2">
+                    </td>
+                    <td>
+                        <input class="easyui-numberbox" id="genExpandZ" style="width: 60px;" value="2" data-options="min:0,precision:2">
+                    </td>
+                </tr>
+                <tr style="display:none" id="stateinput">
+                    <td>
+                        段选择:
+                    </td>
+                    <td colspan="3" >
+                        <select id="genStateIDs" class="easyui-combotree" style="width:360px;" data-options="editable:true,limitToList:true,delay:10,multiple:true,checkbox:true"></select>
+                    </td>
+                </tr>
+                <tr id="boneinput">
+                    <td>
+                        骨骼定义:
+                    </td>
+                    <td colspan="3" >
+                        <input class="easyui-textbox" id="genBones" style="width:360px;"  value="Head_M,cheek_L,cheek_R,Head_M_Other_Joint;Neck_M,Chest_M,Shoulder_R,Shoulder_L,Hip_R,Hip_L;Hip_R,Knee_R,Hip_L,Knee_L"/>
+                    </td>
+                </tr>
+                <tr id="portioninput">
+                    <td>
+                        部位定义:
+                    </td>
+                    <td colspan="3" >
+                        <input class="easyui-textbox" id="genPortions" style="width:360px;"  value="4;1;5"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"><a id="boxGenok" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a></td>
+                    <td colspan="2"><a id="boxGencancel" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">关闭</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- KFDEditorWindow-->
+    <div id="kfdEdtWin" class="easyui-window" title="KFDEditor Window"
+         style="width:800px;height:600px;border: none;"
+         data-options="iconCls:'icon-edit',modal:true,collapsible:false,minimizable:false,maximizable:false,resizable:true,scrollbarSize:0,closed:true">
+        <div class="easyui-panel" title="" style="width: 100%; height: 100%; border: none">
+            <table id="kfdEdtTG" class="easyui-treegrid" style="width:100%;height:100%;"
+                   data-options="iconCls: 'icon-ok',fitColumns: true,idField: 'id',treeField: 'name'">
+                <thead>
+                <tr>
+                    <th data-options="field:'name',width:60,editor:'text',formatter:KFDEditor.name_formatter">名称</th>
+                    <th data-options="field:'value',width:40,editor:'text',formatter:KFDEditor.formatter">值</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <!-- BUFF编辑窗口 -->
+    <div id="buffEditWindow" class="easyui-window" title="BUFF"
+         style="width:800px;height:600px;border: none;"
+         data-options="iconCls:'icon-edit',modal:true,collapsible:false,minimizable:false,maximizable:false,resizable:true,scrollbarSize:0,closed:true">
+        <div class="easyui-panel" title="" style="width: 100%; height: 100%; border: none">
+            <div class="easyui-layout" style="width:100%;height:100%;">
+                <div data-options="region:'north',split:false,collapsedSize:20" style="height:32px">
+                    <a id="save_buff" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" style="border: none;">保存</a>
+                </div>
+                <table id="buffEdtTG" class="easyui-treegrid" style="width:100%;height:100%;"
+                       data-options="iconCls: 'icon-ok',fitColumns: true,idField: 'id',treeField: 'name'">
+                    <thead>
+                    <tr>
+                        <th data-options="field:'name',width:60,editor:'text',formatter:KFDEditor.name_formatter">名称</th>
+                        <th data-options="field:'value',width:40,editor:'text',formatter:KFDEditor.formatter">值</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="kfdRuntimeWin" class="easyui-window" title="KFDEditor Window"
+         style="width:800px;height:600px;border: none;"
+         data-options="iconCls:'icon-edit',modal:true,collapsible:false,minimizable:false,maximizable:false,resizable:true,scrollbarSize:0,closed:true">
+        <div class="easyui-panel" title="" style="width: 100%; height: 100%; border: none">
+            <table id="kfdRuntimeTG" class="easyui-treegrid" style="width:100%;height:100%;"
+                   data-options="iconCls: 'icon-ok',fitColumns: true,idField: 'id',treeField: 'name'">
+                <thead>
+                <tr>
+                    <th data-options="field:'name',width:60,editor:'text',formatter:KFDEditor.name_formatter">名称</th>
+                    <th data-options="field:'value',width:40,editor:'text',formatter:KFDEditor.formatter">值</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <div id="RemoteLogWin" class="easyui-window" title="Log Window"
+         style="width:800px;height:600px;border: none;"
+         data-options="iconCls:'icon-edit',modal:true,collapsible:false,minimizable:false,maximizable:false,resizable:true,scrollbarSize:0,closed:true">
+        <div class="easyui-panel" title="" style="width: 100%; height: 100%; border: none">
+            <div class="easyui-layout" style="width:100%;height:100%;">
+                <div data-options="region:'north',split:false,collapsedSize:20" style="height:32px">
+                    <a id="clearcurrlog" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-clear'"  style="border: none;">清空</a>
+                    <input class="easyui-checkbox" id="autologfetch" labelWidth="70" label="自动拉取:" labelAlign="left"/>
+                    <input class="easyui-checkbox" id="remotebufferlog" labelWidth="70" label="远程缓存:" labelAlign="left"/>
+                    <input class="easyui-checkbox" id="remotelogconsole" labelWidth="100" label="切换到控制台:" labelAlign="left"/>
+                </div>
+                <div data-options="region:'center'">
+                    <table id="RemoteLogDG" class="easyui-datagrid" style="width:100%;height:100%;"
+                           data-options="iconCls: 'icon-ok',fitColumns: true,singleSelect:true">
+                        <thead>
+                        <tr>
+                            <th data-options="field:'time',halign:'center'">时间</th>
+                            <th data-options="field:'category',halign:'center'">分类</th>
+                            <th data-options="field:'verbosity',halign:'center'">级别</th>
+                            <th data-options="field:'data',halign:'center'">日志</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 帧数据编辑窗口 -->
+
+    <div id="fdwindow" class="easyui-window" title="Frame Data"
+         style="width:800px;height:600px;border: none;"
+         data-options="iconCls:'icon-edit',modal:false,collapsible:false,minimizable:false,maximizable:false,resizable:true,scrollbarSize:0,closed:true">
+        <div class="easyui-panel" title="" style="width: 100%; height: 100%; border: none">
+            <div class="easyui-layout" style="width:100%;height:100%;">
+                <div data-options="region:'north',split:false,collapsedSize:20" style="height:64px">
+                    <a align="right">帧:</a>
+                    <input id="fd_fI" class="easyui-textbox" style="width: 30px" disabled>
+                    <input id="fd_once" class="easyui-checkbox" label="Once:" labelAlign="right">
+                    <input id="fd_startPC" class="easyui-textbox" label="startPC:" labelAlign="right">
+                    <input id="fd_varSize" class="easyui-textbox" label="varSize:" labelAlign="right">
+                    <input id="fd_paramSize" class="easyui-textbox" label="paramSize:" labelAlign="right"><br/>
+                    <input id="fd_scriptLayer" class="easyui-textbox" label="脚本标识:" labelAlign="right">
+                    <input id="fd_paramDis" class="easyui-checkbox" label="显示参数:" labelAlign="right">
+                </div>
+                <div data-options="region:'east', split:true" title="Detail" style="width:380px;">
+                    <div style="width: 100%">
+                        <span>标签:</span>
+                        <input id="fd_sec_label" type="text" value="" onchange="FrameDataWindow.OnLabelStrChange(this)" disabled>
+                    </div>
+                    <table id="fd_sec" class="easyui-treegrid" style="width:100%;height:auto;"
+                           data-options="iconCls: 'icon-ok',fitColumns: true,idField: 'id',treeField: 'name'">
+                        <thead>
+                        <tr>
+                            <th data-options="field:'name',width:60,editor:'text',formatter:KFDEditor.name_formatter">名称</th>
+                            <th data-options="field:'value',width:40,editor:'text',formatter:KFDEditor.formatter">值</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div data-options="region:'center',iconCls:'icon-ok', split:true, collapsed:false " style="padding:5px">
+                    <div class="easyui-layout" data-options="fit:true">
+                        <div data-options="region:'north',collapsed:false" style="height:64px">
+                            <select id="fd_scriptCombo" class="easyui-combotree" style="width: 100%;" data-options="editable:true,limitToList:true,delay:10"></select><br/>
+                            <a id="fd_newAdd" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="border: none;">新增</a>
+                            <a id="fd_delete" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" style="border: none;">删除</a>
+                            <a id="fd_onOff" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-setting'" style="border: none;">开关</a>
+                            <a id="fd_test" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-sum'" style="border: none;">测试</a>
+                            <a id="fd_break" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-setting'" style="border: none;">断点</a>
+                        </div>
+                        <div data-options="region:'center'">
+                            <table id="fd_first">
+                                <thead>
+                                <tr>
+                                    <th data-options="field:'name',width:'80%',editor:'text',formatter:FrameDataWindow.NameFormatter">脚本</th>
+                                    <th data-options="field:'status',width:'20%',align:'left',formatter:FrameDataWindow.StatusFormatter">状态</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+<!--                    class="easyui-combobox"-->
+                    <!-- <select id="fd_scriptCombo" style="width: 40%; " data-options="valueField:'value',textField:'label'"></select> -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -->
+
+    <!-- 临时先这样，后面有空做成UE4的造型 -->
+    <div id="selectwindow" class="easyui-window" title="Select Path"
+         style="width:300px;height:70px;border: none;"
+         data-options="iconCls:'icon-edit',modal:true,collapsible:false,minimizable:false,maximizable:false,resizable:true,scrollbarSize:0,closed:true">
+        <div class="easyui-panel" title="" style="width: 100%; height: 100%; border: none">
+            <div class="easyui-layout" style="width:100%;height:100%;">
+                <select id="sw_scriptCombo" class="easyui-combotree" style="width: 100%;" data-options="editable:true,limitToList:true,delay:10"></select>
+            </div>
+        </div>
+    </div>
+
+    <!-- 查找窗口 -->
+    <div id="searchwindow" class="easyui-window" title="查找"
+         style="width:300px;height:70px;border: none;"
+         data-options="iconCls:'icon-search',modal:true,collapsible:false,minimizable:false,maximizable:false,resizable:false,scrollbarSize:0,closed:true">
+        <div class="easyui-panel" title="" style="width: 100%; height: 100%; border: none">
+            <div class="easyui-layout" style="width:100%;height:100%;">
+                <input id="searchcontent" class="f1 easyui-textbox" data-options="iconCls:'icon-search'" style="width:290px;height:30px"/>
+            </div>
+        </div>
+    </div>
+
+    <div id="tlscriptmenu" class="easyui-menu" style="width:120px;">
+        <div onclick="FrameDataWindow.CopyScriptObj()" data-options="iconCls:'icon-copy'">拷贝</div>
+        <div onclick="FrameDataWindow.PasteScriptObj()" data-options="iconCls:'icon-paste'">粘贴</div>
+        <div onclick="FrameDataWindow.CutScriptObj()" data-options="iconCls:'icon-paste'">剪切</div>
+        <div onclick="KFDEditor.FDEditorWindow.OnDeleteClick()" data-options="iconCls:'icon-remove'">删除</div>
+    </div>
+
+    <div id="remoteeditormenu" class="easyui-menu" style="width:120px;">
+        <div onclick="_global.editor.OpenNewWindow(_global.CopyValue);" data-options="iconCls:'icon-add'">新窗口打开文件</div>
+        <div onclick="_global.editor.OpenGenboxWin();" data-options="iconCls:'icon-large-shapes'">生成受击框</div>
+    </div>
+
+    <div id="remoteruntimemenu" class="easyui-menu" style="width:120px;">
+        <div onclick="_global.editor.OpenNewWindow(_global.CopyValue);" data-options="iconCls:'icon-add'">新窗口打开文件</div>
+        <div onclick="_global.editor.OpenRuntimeDataWin();" data-options="iconCls:'icon-large-shapes'">查改运行时数据</div>
+    </div>
+
+    <div id="fileslibmenu" class="easyui-menu" style="width:220px;">
+    </div>
+
+    <div id="copymenu" class="easyui-menu" style="width:120px;">
+        <div id="editcopy" onclick="KFDEditor.editcopy(_global.clipboard.editor, _global.clipboard.dataid);" data-options="iconCls:'icon-copy'">拷贝</div>
+        <div id="editpaste" onclick="KFDEditor.editpaste(_global.clipboard.editor, _global.clipboard.dataid);" data-options="iconCls:'icon-paste'">粘贴</div>
+        <div id="editsyscopy" onclick="KFDEditor.editsyscopy(_global.clipboard.editor, _global.clipboard.dataid);" data-options="iconCls:'icon-copy'">系统复制</div>
+        <div id="editsyspaste" onclick="KFDEditor.editsyspaste(_global.clipboard.editor, _global.clipboard.dataid);" data-options="iconCls:'icon-paste'">系统粘贴</div>
+        <div onclick="KFDEditor.editreset(_global.clipboard.editor, _global.clipboard.dataid);" data-options="iconCls:'icon-undo'">重置默认值</div>
+        <div class="menu-sep"></div>
+        <div id="switchvar" onclick="KFDEditor.editswitchvar(_global.clipboard.editor, _global.clipboard.dataid, 'var');" data-options="iconCls:'icon-redo'">转换为变量</div>
+        <div id="switchexpr" onclick="KFDEditor.editswitchvar(_global.clipboard.editor, _global.clipboard.dataid, 'expr');" data-options="iconCls:'icon-redo'">转换为表达式</div>
+        <div id="resetconst" onclick="KFDEditor.editswitchvar(_global.clipboard.editor, _global.clipboard.dataid, 'const');" data-options="iconCls:'icon-undo'">恢复为常量</div>
+        <div>
+            <span>Watch变量</span>
+            <div style="width:120px;">
+                <div onclick="KFDEditor.watchvar(_global.clipboard.editor, _global.clipboard.dataid, 'int');" data-options="">整型</div>
+                <div onclick="KFDEditor.watchvar(_global.clipboard.editor, _global.clipboard.dataid, 'float');" data-options="">浮点</div>
+                <div onclick="KFDEditor.watchvar(_global.clipboard.editor, _global.clipboard.dataid, 'string');" data-options="">字符串</div>
+                <div onclick="KFDEditor.watchvar(_global.clipboard.editor, _global.clipboard.dataid, 'object');" data-options="">对象</div>
+            </div>
+        </div>
+        <div id="fieldbreakpoint" onclick="KFDEditor.fielddebugbreak(_global.clipboard.editor, _global.clipboard.dataid)" data-options="iconCls:'icon-add'">断点</div>
+    </div>
+
+
+    <script type="text/javascript" src="src/ext/PostInclude.js"></script>
+
+
+</body>
+</html>

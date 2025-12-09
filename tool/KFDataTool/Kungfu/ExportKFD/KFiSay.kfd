@@ -1,0 +1,141 @@
+[
+    {
+        "includes": [
+            "Blocks/BTGraphEventListener.h",
+            "KFEventListenInfoF.h"
+        ],
+        "cname": "[参数]事件监听信息",
+        "class": "KFGraphArgEventListenInfo",
+        "extend": "KFScriptData",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "value",
+                "otype": "KFEventListenInfo",
+                "type": "object"
+            }
+        ],
+        "clsid": 1353
+    },
+    {
+        "includes": [
+            "Blocks/BTGraphEventListener.h"
+        ],
+        "nof": 1,
+        "cname": "事件监听器",
+        "class": "BTGraphEventListener",
+        "extend": "KFActor",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "StartListen",
+                "unknowtags": [
+                    {
+                        "tag": "Input",
+                        "val": "启动监听"
+                    },
+                    {
+                        "tag": "Output",
+                        "val": "[OnEvent]"
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "name": "StopListen",
+                "unknowtags": [
+                    {
+                        "tag": "Input",
+                        "val": "停止监听"
+                    },
+                    {
+                        "tag": "Output",
+                        "val": "[]"
+                    }
+                ]
+            }
+        ],
+        "clsid": 1354
+    },
+    {
+        "includes": [
+            "Blocks/BTGraphTimer.h",
+            "float32F.h"
+        ],
+        "cname": "[参数]定时器信息",
+        "class": "KFGraphArgTimerInfo",
+        "extend": "KFScriptData",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "间隔时间[秒]",
+                "default": "0",
+                "name": "interval",
+                "otype": "float32",
+                "type": "object"
+            },
+            {
+                "id": 2,
+                "cname": "次数限制[0为不限]",
+                "default": "0",
+                "name": "count_limit",
+                "type": "int32"
+            }
+        ],
+        "clsid": 1355
+    },
+    {
+        "includes": [
+            "Blocks/BTGraphTimer.h"
+        ],
+        "nof": 1,
+        "cname": "定时器",
+        "class": "BTGraphTimer",
+        "extend": "KFActor",
+        "propertys": [
+            {
+                "id": 1,
+                "name": "StartTimer",
+                "unknowtags": [
+                    {
+                        "tag": "Input",
+                        "val": "启动定时器[秒]"
+                    },
+                    {
+                        "tag": "Output",
+                        "val": "[OnTimer]"
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "name": "StartTimerFromInput",
+                "unknowtags": [
+                    {
+                        "tag": "Input",
+                        "val": "启动定时器[秒]:KFGraphArgFloat32"
+                    },
+                    {
+                        "tag": "Output",
+                        "val": "[OnTimer]"
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "name": "StopTimer",
+                "unknowtags": [
+                    {
+                        "tag": "Input",
+                        "val": "停止定时器"
+                    },
+                    {
+                        "tag": "Output",
+                        "val": "[]"
+                    }
+                ]
+            }
+        ],
+        "clsid": 1356
+    }
+]

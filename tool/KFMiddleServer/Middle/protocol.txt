@@ -1,0 +1,2 @@
+request:{rpcid:0,method:func,argcount:1,args:[1,2],rspid:0,srcid:0}
+response:{rpcid:1,arg:*}

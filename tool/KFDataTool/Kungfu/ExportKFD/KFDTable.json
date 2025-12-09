@@ -1,0 +1,1504 @@
+{
+    "classlist": [
+        {
+            "class": "KFDataTypeDef",
+            "id": 1000
+        },
+        {
+            "class": "KFDAttachEnum",
+            "id": 1001
+        },
+        {
+            "class": "KFDTag",
+            "id": 1002
+        },
+        {
+            "class": "KFDProperty",
+            "id": 1003
+        },
+        {
+            "class": "KFDMethod",
+            "id": 1004
+        },
+        {
+            "class": "KFD",
+            "id": 1005
+        },
+        {
+            "class": "KFDAnyObject",
+            "id": 1006
+        },
+        {
+            "class": "kfTypeid",
+            "id": 1007
+        },
+        {
+            "class": "KFFrameData",
+            "id": 1008
+        },
+        {
+            "class": "KFScriptData",
+            "id": 1009
+        },
+        {
+            "class": "KFScriptGroupType",
+            "id": 1010
+        },
+        {
+            "class": "KFActor",
+            "id": 1011
+        },
+        {
+            "class": "KFBlockTarget",
+            "id": 1012
+        },
+        {
+            "class": "KFActorConfig",
+            "id": 1013
+        },
+        {
+            "class": "KFActorType",
+            "id": 1014
+        },
+        {
+            "class": "KFAssetDatabaseItem",
+            "id": 1015
+        },
+        {
+            "class": "KFAssetDatabase",
+            "id": 1016
+        },
+        {
+            "class": "KFBlockTargetOption",
+            "id": 1017
+        },
+        {
+            "class": "KFBlockFuncType",
+            "id": 1018
+        },
+        {
+            "class": "KFBlockFuncInfo",
+            "id": 1019
+        },
+        {
+            "class": "KFBlockTargetData",
+            "id": 1020
+        },
+        {
+            "class": "float32",
+            "id": 1021
+        },
+        {
+            "class": "Vector3",
+            "id": 1022
+        },
+        {
+            "class": "Vector2",
+            "id": 1023
+        },
+        {
+            "class": "KFEventData",
+            "id": 1024
+        },
+        {
+            "class": "KFCompareOperate",
+            "id": 1025
+        },
+        {
+            "class": "KFConditionData",
+            "id": 1026
+        },
+        {
+            "class": "KFGraphConfig",
+            "id": 1027
+        },
+        {
+            "class": "KFGraphBlockIPinData",
+            "id": 1028
+        },
+        {
+            "class": "KFGraphBlockOPinData",
+            "id": 1029
+        },
+        {
+            "class": "KFGraphBlockType",
+            "id": 1030
+        },
+        {
+            "class": "KFGraphBlockData",
+            "id": 1031
+        },
+        {
+            "class": "KFGraphGroupData",
+            "id": 1032
+        },
+        {
+            "class": "KFGraphCanvasData",
+            "id": 1033
+        },
+        {
+            "class": "KFGraphData",
+            "id": 1034
+        },
+        {
+            "class": "KFEventScope",
+            "id": 1035
+        },
+        {
+            "class": "KFEventListenOption",
+            "id": 1036
+        },
+        {
+            "class": "KFEventListenArg",
+            "id": 1037
+        },
+        {
+            "class": "KFEventTypeEnum",
+            "id": 1038
+        },
+        {
+            "class": "KFEventListenInfo",
+            "id": 1039
+        },
+        {
+            "class": "KFACTSEventData",
+            "id": 1040
+        },
+        {
+            "class": "KFActorModelEventID",
+            "id": 1041
+        },
+        {
+            "class": "KFActorModelEventData",
+            "id": 1042
+        },
+        {
+            "class": "KFBound",
+            "id": 1043
+        },
+        {
+            "class": "KFBox",
+            "id": 1044
+        },
+        {
+            "class": "KFColorFloat",
+            "id": 1045
+        },
+        {
+            "class": "KFColor",
+            "id": 1046
+        },
+        {
+            "class": "KFDynamicColorType",
+            "id": 1047
+        },
+        {
+            "class": "KFColorFactor",
+            "id": 1048
+        },
+        {
+            "class": "KFDynamicColor",
+            "id": 1049
+        },
+        {
+            "class": "KFColorPaletteDynamicItem",
+            "id": 1050
+        },
+        {
+            "class": "KFColorPaletteSimpleItem",
+            "id": 1051
+        },
+        {
+            "class": "KFColorPaletteCustomItem",
+            "id": 1052
+        },
+        {
+            "class": "KFColorPalette",
+            "id": 1053
+        },
+        {
+            "class": "KFCurveBuiltin",
+            "id": 1054
+        },
+        {
+            "class": "KFPrefsItem",
+            "id": 1055
+        },
+        {
+            "class": "KFPrefs",
+            "id": 1056
+        },
+        {
+            "class": "KFMetaData",
+            "id": 1057
+        },
+        {
+            "class": "KFTimelineRenderItem",
+            "id": 1058
+        },
+        {
+            "class": "KFTimelineRenderData",
+            "id": 1059
+        },
+        {
+            "class": "KFTimelineConfig",
+            "id": 1060
+        },
+        {
+            "class": "KFFrameBox",
+            "id": 1061
+        },
+        {
+            "class": "KFKeyFrame",
+            "id": 1062
+        },
+        {
+            "class": "KFTimeBlockOpOption",
+            "id": 1063
+        },
+        {
+            "class": "KFTimeBlockOpData",
+            "id": 1064
+        },
+        {
+            "class": "KFTimeBlockData",
+            "id": 1065
+        },
+        {
+            "class": "KFTimelayerOption",
+            "id": 1066
+        },
+        {
+            "class": "KFTimelayerData",
+            "id": 1067
+        },
+        {
+            "class": "KFTimelineData",
+            "id": 1068
+        },
+        {
+            "class": "KFTimelineEvent",
+            "id": 1069
+        },
+        {
+            "class": "GSLogScriptData",
+            "id": 1070
+        },
+        {
+            "class": "KFGraphArgOption",
+            "id": 1071
+        },
+        {
+            "class": "KFGraphArgInt32",
+            "id": 1072
+        },
+        {
+            "class": "KFGraphArgFloat32",
+            "id": 1073
+        },
+        {
+            "class": "KFGraphArgString",
+            "id": 1074
+        },
+        {
+            "class": "KFGraphArgInt32Array",
+            "id": 1075
+        },
+        {
+            "class": "KFGraphArgFloat32Array",
+            "id": 1076
+        },
+        {
+            "class": "KFGraphArgStringArray",
+            "id": 1077
+        },
+        {
+            "class": "KFGraphArgNull",
+            "id": 1078
+        },
+        {
+            "class": "KFGraphArgVector3",
+            "id": 1079
+        },
+        {
+            "class": "KFGraphOpFor",
+            "id": 1080
+        },
+        {
+            "class": "KFGraphOpLoop",
+            "id": 1081
+        },
+        {
+            "class": "KFGraphOpSwitch",
+            "id": 1082
+        },
+        {
+            "class": "KFGraphOpIfElse",
+            "id": 1083
+        },
+        {
+            "class": "KFGraphOpIfNotNull",
+            "id": 1084
+        },
+        {
+            "class": "KFScriptArgYESNO",
+            "id": 1085
+        },
+        {
+            "class": "KFScriptTypeEnum",
+            "id": 1086
+        },
+        {
+            "class": "TSFireGraphEventScriptData",
+            "id": 1087
+        },
+        {
+            "class": "KFPlayStateAction",
+            "id": 1088
+        },
+        {
+            "class": "TSPlayStateScriptData",
+            "id": 1089
+        },
+        {
+            "class": "EditorCommand",
+            "id": 1090
+        },
+        {
+            "class": "RequestEditCommand",
+            "id": 1091
+        },
+        {
+            "class": "RTObjectInfo",
+            "id": 1092
+        },
+        {
+            "class": "ResponseEditCommand",
+            "id": 1093
+        },
+        {
+            "class": "UpdateObjectListCommand",
+            "id": 1094
+        },
+        {
+            "class": "RequestObjectDataCommand",
+            "id": 1095
+        },
+        {
+            "class": "RTObjectDataDetail",
+            "id": 1096
+        },
+        {
+            "class": "ResponseObjectDataCommand",
+            "id": 1097
+        },
+        {
+            "class": "ResetCommand",
+            "id": 1098
+        },
+        {
+            "class": "CreateActorCommand",
+            "id": 1099
+        },
+        {
+            "class": "DeleteActorCommand",
+            "id": 1100
+        },
+        {
+            "class": "SelectActorCommand",
+            "id": 1101
+        },
+        {
+            "class": "ChgActorGroupCommand",
+            "id": 1102
+        },
+        {
+            "class": "SetMainActorCommand",
+            "id": 1103
+        },
+        {
+            "class": "PlayOneFrameCommand",
+            "id": 1104
+        },
+        {
+            "class": "TestScriptCommand",
+            "id": 1105
+        },
+        {
+            "class": "TestBuffCommand",
+            "id": 1106
+        },
+        {
+            "class": "SyncFrameBoxCommand",
+            "id": 1107
+        },
+        {
+            "class": "EnterEditModeCommand",
+            "id": 1108
+        },
+        {
+            "class": "SyncKFBytesCommand",
+            "id": 1109
+        },
+        {
+            "class": "ShowFrameBoxCommand",
+            "id": 1110
+        },
+        {
+            "class": "SyncSkillConfigCommand",
+            "id": 1111
+        },
+        {
+            "class": "SyncActionConfigCommand",
+            "id": 1112
+        },
+        {
+            "class": "SyncAnimationConfigCommand",
+            "id": 1113
+        },
+        {
+            "class": "ReloadActorConfigsCommand",
+            "id": 1114
+        },
+        {
+            "class": "QueryAnimClipTimeCommand",
+            "id": 1115
+        },
+        {
+            "class": "AsyncRemoteLoadCommand",
+            "id": 1116
+        },
+        {
+            "class": "OpenBlkCommand",
+            "id": 1117
+        },
+        {
+            "class": "SyncMapDataCommand",
+            "id": 1118
+        },
+        {
+            "class": "SyncMapEditorDataCommand",
+            "id": 1119
+        },
+        {
+            "class": "MapEditorOperateCommand",
+            "id": 1120
+        },
+        {
+            "class": "EditableDataURL",
+            "id": 1121
+        },
+        {
+            "class": "KFAnimationClipResInfo",
+            "id": 1122
+        },
+        {
+            "class": "UIChildWindowItem",
+            "id": 1123
+        },
+        {
+            "class": "UIChildTabLayoutItem",
+            "id": 1124
+        },
+        {
+            "class": "UITabLayoutConfig",
+            "id": 1125
+        },
+        {
+            "class": "UILayoutConfig",
+            "id": 1126
+        },
+        {
+            "class": "SetupItem",
+            "id": 1127
+        },
+        {
+            "class": "SetupConfig",
+            "id": 1128
+        },
+        {
+            "class": "KFEntity",
+            "id": 1129
+        },
+        {
+            "class": "KFItem",
+            "id": 1130
+        },
+        {
+            "class": "KFPlayer",
+            "id": 1131
+        },
+        {
+            "class": "KFActorAttributeID",
+            "id": 1132
+        },
+        {
+            "class": "AcceptVKeyInfo",
+            "id": 1133
+        },
+        {
+            "class": "HurtType",
+            "id": 1134
+        },
+        {
+            "class": "HurtPart1",
+            "id": 1135
+        },
+        {
+            "class": "HurtPart2",
+            "id": 1136
+        },
+        {
+            "class": "FloatType",
+            "id": 1137
+        },
+        {
+            "class": "AttackType",
+            "id": 1138
+        },
+        {
+            "class": "DamageType",
+            "id": 1139
+        },
+        {
+            "class": "DamageValueType",
+            "id": 1140
+        },
+        {
+            "class": "ActionState",
+            "id": 1141
+        },
+        {
+            "class": "ActionType",
+            "id": 1142
+        },
+        {
+            "class": "ActionClassType",
+            "id": 1143
+        },
+        {
+            "class": "KFActionConfig",
+            "id": 1144
+        },
+        {
+            "class": "KFMotionConfig",
+            "id": 1145
+        },
+        {
+            "class": "KFASMHurtCategory",
+            "id": 1146
+        },
+        {
+            "class": "KFASMAttackCategory",
+            "id": 1147
+        },
+        {
+            "class": "KFASMOtherCategory",
+            "id": 1148
+        },
+        {
+            "class": "KFASMConfig",
+            "id": 1149
+        },
+        {
+            "class": "KFMotionInfo",
+            "id": 1150
+        },
+        {
+            "class": "KFHurtStateInfo",
+            "id": 1151
+        },
+        {
+            "class": "KFNormalStateInfo",
+            "id": 1152
+        },
+        {
+            "class": "KFCaptiveNormalStateInfo",
+            "id": 1153
+        },
+        {
+            "class": "KFDeadLieStateInfo",
+            "id": 1154
+        },
+        {
+            "class": "KFDeadNormalStateInfo",
+            "id": 1155
+        },
+        {
+            "class": "KFFloatStateInfo",
+            "id": 1156
+        },
+        {
+            "class": "KFGetUpStateInfo",
+            "id": 1157
+        },
+        {
+            "class": "KFLieStateInfo",
+            "id": 1158
+        },
+        {
+            "class": "KFStiffStateInfo",
+            "id": 1159
+        },
+        {
+            "class": "KFBeThrowFloatStateInfo",
+            "id": 1160
+        },
+        {
+            "class": "KFBeThrowNormalStateInfo",
+            "id": 1161
+        },
+        {
+            "class": "KFActionInfo",
+            "id": 1162
+        },
+        {
+            "class": "KFSimpleActionInfo",
+            "id": 1163
+        },
+        {
+            "class": "KFDynamicActionInfo",
+            "id": 1164
+        },
+        {
+            "class": "KFBeHurtActionInfo",
+            "id": 1165
+        },
+        {
+            "class": "KFBeThrowActionInfo",
+            "id": 1166
+        },
+        {
+            "class": "KFCaptiveActionInfo",
+            "id": 1167
+        },
+        {
+            "class": "KFCaughtActionInfo",
+            "id": 1168
+        },
+        {
+            "class": "KFDeadActionInfo",
+            "id": 1169
+        },
+        {
+            "class": "KFBaseActionID",
+            "id": 1170
+        },
+        {
+            "class": "KFNextActionPriority",
+            "id": 1171
+        },
+        {
+            "class": "KFEntityComposeEnum",
+            "id": 1172
+        },
+        {
+            "class": "KFEntityCompose",
+            "id": 1173
+        },
+        {
+            "class": "KFEntityConfig",
+            "id": 1174
+        },
+        {
+            "class": "KFEntityGroup",
+            "id": 1175
+        },
+        {
+            "class": "KFEntityRank",
+            "id": 1176
+        },
+        {
+            "class": "KFEntityViewInfo",
+            "id": 1177
+        },
+        {
+            "class": "KFEntityArmorInfo",
+            "id": 1178
+        },
+        {
+            "class": "KFEntityBattleInfo",
+            "id": 1179
+        },
+        {
+            "class": "KFEntityMaterialInfo",
+            "id": 1180
+        },
+        {
+            "class": "KFEntityAIInfo",
+            "id": 1181
+        },
+        {
+            "class": "KFEntityReviveOption",
+            "id": 1182
+        },
+        {
+            "class": "KFEntityReviveInfo",
+            "id": 1183
+        },
+        {
+            "class": "KFEntityDeadOption",
+            "id": 1184
+        },
+        {
+            "class": "KFEntityDeadInfo",
+            "id": 1185
+        },
+        {
+            "class": "KFEntityBasicInfo",
+            "id": 1186
+        },
+        {
+            "class": "KFEntityType",
+            "id": 1187
+        },
+        {
+            "class": "KFMotionStep",
+            "id": 1188
+        },
+        {
+            "class": "KFFloatStep",
+            "id": 1189
+        },
+        {
+            "class": "KFBaseMotionID",
+            "id": 1190
+        },
+        {
+            "class": "KFCameraOffsetArg",
+            "id": 1191
+        },
+        {
+            "class": "KFCameraShakeArg",
+            "id": 1192
+        },
+        {
+            "class": "KFCameraShakeItem",
+            "id": 1193
+        },
+        {
+            "class": "KFCameraShakeConfig",
+            "id": 1194
+        },
+        {
+            "class": "KFEffectBonesID",
+            "id": 1195
+        },
+        {
+            "class": "KFEffectCreateOption",
+            "id": 1196
+        },
+        {
+            "class": "KFEffectArg",
+            "id": 1197
+        },
+        {
+            "class": "KFBlurArg",
+            "id": 1198
+        },
+        {
+            "class": "KFBatiOutlineArg",
+            "id": 1199
+        },
+        {
+            "class": "KFShadowArg",
+            "id": 1200
+        },
+        {
+            "class": "PostEffectType",
+            "id": 1201
+        },
+        {
+            "class": "PostEffectSpeedLine",
+            "id": 1202
+        },
+        {
+            "class": "ZOffsetType",
+            "id": 1203
+        },
+        {
+            "class": "XOffsetType",
+            "id": 1204
+        },
+        {
+            "class": "VKeyList",
+            "id": 1205
+        },
+        {
+            "class": "AcceptVKeyArg",
+            "id": 1206
+        },
+        {
+            "class": "CancelVkeyGroup",
+            "id": 1207
+        },
+        {
+            "class": "CancelActionArg",
+            "id": 1208
+        },
+        {
+            "class": "ControlScriptArg",
+            "id": 1209
+        },
+        {
+            "class": "MoveScriptArg",
+            "id": 1210
+        },
+        {
+            "class": "ThrowTargetArg",
+            "id": 1211
+        },
+        {
+            "class": "ItemDisappearType",
+            "id": 1212
+        },
+        {
+            "class": "ItemAcceptDamageType",
+            "id": 1213
+        },
+        {
+            "class": "CreateItemOption",
+            "id": 1214
+        },
+        {
+            "class": "CreateItemArg",
+            "id": 1215
+        },
+        {
+            "class": "SearchMoveOption",
+            "id": 1216
+        },
+        {
+            "class": "SearchMoveArg",
+            "id": 1217
+        },
+        {
+            "class": "SearchEntityOption",
+            "id": 1218
+        },
+        {
+            "class": "SearchEntityArg",
+            "id": 1219
+        },
+        {
+            "class": "KFAudioType",
+            "id": 1220
+        },
+        {
+            "class": "KFAudioPlayOption",
+            "id": 1221
+        },
+        {
+            "class": "KFAudioPlayInfo",
+            "id": 1222
+        },
+        {
+            "class": "Direction",
+            "id": 1223
+        },
+        {
+            "class": "DirectionOption",
+            "id": 1224
+        },
+        {
+            "class": "DirectionAxis",
+            "id": 1225
+        },
+        {
+            "class": "KFEthnicConfig",
+            "id": 1226
+        },
+        {
+            "class": "KFEthnicInfo",
+            "id": 1227
+        },
+        {
+            "class": "KFGraphArgEntityConfig",
+            "id": 1228
+        },
+        {
+            "class": "HoldType",
+            "id": 1229
+        },
+        {
+            "class": "HoldLevel",
+            "id": 1230
+        },
+        {
+            "class": "KFGamePlayConfig",
+            "id": 1231
+        },
+        {
+            "class": "KFEntityEventID",
+            "id": 1232
+        },
+        {
+            "class": "KFEntityEventData",
+            "id": 1233
+        },
+        {
+            "class": "KFWorldEventID",
+            "id": 1234
+        },
+        {
+            "class": "KFWorldEventData",
+            "id": 1235
+        },
+        {
+            "class": "KFTerrainBlockInteractEventID",
+            "id": 1236
+        },
+        {
+            "class": "KFTerrainBlockInteractEventData",
+            "id": 1237
+        },
+        {
+            "class": "KFMapEntityData",
+            "id": 1238
+        },
+        {
+            "class": "KFEntityCreaterData",
+            "id": 1239
+        },
+        {
+            "class": "KFEntityCreaterBornPosType",
+            "id": 1240
+        },
+        {
+            "class": "KFTerrainBlockData",
+            "id": 1241
+        },
+        {
+            "class": "KFTerrainLayerData",
+            "id": 1242
+        },
+        {
+            "class": "KFTerrainChunkData",
+            "id": 1243
+        },
+        {
+            "class": "KFMapData",
+            "id": 1244
+        },
+        {
+            "class": "KFTerrainBlockEditorData",
+            "id": 1245
+        },
+        {
+            "class": "KFTerrainLayerEditorData",
+            "id": 1246
+        },
+        {
+            "class": "KFTerrainChunkEditorData",
+            "id": 1247
+        },
+        {
+            "class": "KFMapEditorData",
+            "id": 1248
+        },
+        {
+            "class": "KFTerrainBlockType",
+            "id": 1249
+        },
+        {
+            "class": "KFTerrainBlockViewType",
+            "id": 1250
+        },
+        {
+            "class": "KFTerrainBlockViewTypeInfo",
+            "id": 1251
+        },
+        {
+            "class": "KFTerrainBlockViewTypeConfig",
+            "id": 1252
+        },
+        {
+            "class": "KFSkillConfig",
+            "id": 1253
+        },
+        {
+            "class": "KFSkillType",
+            "id": 1254
+        },
+        {
+            "class": "KFSkillHurtColor",
+            "id": 1255
+        },
+        {
+            "class": "KFSkillHurtInfo",
+            "id": 1256
+        },
+        {
+            "class": "KFSkillAttackInfo",
+            "id": 1257
+        },
+        {
+            "class": "KFSkillState",
+            "id": 1258
+        },
+        {
+            "class": "KFSkillCostType",
+            "id": 1259
+        },
+        {
+            "class": "KFSkillUseCondition",
+            "id": 1260
+        },
+        {
+            "class": "KFSkillQTEType",
+            "id": 1261
+        },
+        {
+            "class": "KFSkillQTEInfo",
+            "id": 1262
+        },
+        {
+            "class": "KFSkillInfo",
+            "id": 1263
+        },
+        {
+            "class": "KFSStatusTypeConfig",
+            "id": 1264
+        },
+        {
+            "class": "KFSStatusGroupInfo",
+            "id": 1265
+        },
+        {
+            "class": "KFSStatusConfig",
+            "id": 1266
+        },
+        {
+            "class": "KFSStatusCompareResult",
+            "id": 1267
+        },
+        {
+            "class": "KFSStatusEventType",
+            "id": 1268
+        },
+        {
+            "class": "KFSStatusEffectType",
+            "id": 1269
+        },
+        {
+            "class": "KFSStatusTypeEnum",
+            "id": 1270
+        },
+        {
+            "class": "KFSStatusEffectInfo",
+            "id": 1271
+        },
+        {
+            "class": "KFSStatusEventInfo",
+            "id": 1272
+        },
+        {
+            "class": "KFSStatusMutexInfo",
+            "id": 1273
+        },
+        {
+            "class": "KFSStatusTypeInfo",
+            "id": 1274
+        },
+        {
+            "class": "KFSStatusInfo",
+            "id": 1275
+        },
+        {
+            "class": "VARNAME",
+            "id": 1276
+        },
+        {
+            "class": "VKeyInfo",
+            "id": 1277
+        },
+        {
+            "class": "VKeyDef",
+            "id": 1278
+        },
+        {
+            "class": "KFGamePlay",
+            "id": 1279
+        },
+        {
+            "class": "GSAddMapBlockOption",
+            "id": 1280
+        },
+        {
+            "class": "GSAddMapBlockScriptData",
+            "id": 1281
+        },
+        {
+            "class": "GSCallForwardIconScriptData",
+            "id": 1282
+        },
+        {
+            "class": "GSCreateItemScriptData",
+            "id": 1283
+        },
+        {
+            "class": "GSCreatePlayerOption",
+            "id": 1284
+        },
+        {
+            "class": "GSCreatePlayerBornPointOption",
+            "id": 1285
+        },
+        {
+            "class": "GSCreatePlayerScriptData",
+            "id": 1286
+        },
+        {
+            "class": "GSCreateUIScriptData",
+            "id": 1287
+        },
+        {
+            "class": "GSSetMapChunkScriptData",
+            "id": 1288
+        },
+        {
+            "class": "GSCameraShakeScriptOption",
+            "id": 1289
+        },
+        {
+            "class": "GSCameraShakeScriptData",
+            "id": 1290
+        },
+        {
+            "class": "KFCGType",
+            "id": 1291
+        },
+        {
+            "class": "KFCGEndBehavior",
+            "id": 1292
+        },
+        {
+            "class": "GSPlayCGScriptData",
+            "id": 1293
+        },
+        {
+            "class": "KFGraphArgVKey",
+            "id": 1294
+        },
+        {
+            "class": "KFScriptTypesVirgation",
+            "id": 1295
+        },
+        {
+            "class": "RTSCameraOffsetScriptData",
+            "id": 1296
+        },
+        {
+            "class": "RTSCopyShadowScriptData",
+            "id": 1297
+        },
+        {
+            "class": "RTSCreateEffectScriptData",
+            "id": 1298
+        },
+        {
+            "class": "RTSPlayAudioScriptData",
+            "id": 1299
+        },
+        {
+            "class": "RTSSetPostEffectScriptData",
+            "id": 1300
+        },
+        {
+            "class": "RTSShakeSelfScriptData",
+            "id": 1301
+        },
+        {
+            "class": "TSAcceptVKeyScriptData",
+            "id": 1302
+        },
+        {
+            "class": "TSCancelActionScriptData",
+            "id": 1303
+        },
+        {
+            "class": "TSAddStatusScriptOption",
+            "id": 1304
+        },
+        {
+            "class": "TSAddStatusScriptData",
+            "id": 1305
+        },
+        {
+            "class": "TSCatchValueScriptData",
+            "id": 1306
+        },
+        {
+            "class": "TSChangeSkillOption",
+            "id": 1307
+        },
+        {
+            "class": "TSChangeSkillScriptData",
+            "id": 1308
+        },
+        {
+            "class": "TSChangeTargetOption",
+            "id": 1309
+        },
+        {
+            "class": "TSChangeTargetAttributeType",
+            "id": 1310
+        },
+        {
+            "class": "TSChangeTargetScriptData",
+            "id": 1311
+        },
+        {
+            "class": "TSClearAimsScriptOption",
+            "id": 1312
+        },
+        {
+            "class": "TSClearAimsScriptData",
+            "id": 1313
+        },
+        {
+            "class": "TSControl3DScriptData",
+            "id": 1314
+        },
+        {
+            "class": "TSControlScriptData",
+            "id": 1315
+        },
+        {
+            "class": "TSDIRControlScriptData",
+            "id": 1316
+        },
+        {
+            "class": "TSEventVirgationEventData",
+            "id": 1317
+        },
+        {
+            "class": "TSEventVirgationScriptData",
+            "id": 1318
+        },
+        {
+            "class": "TSFoundCheckScriptData",
+            "id": 1319
+        },
+        {
+            "class": "TSFoundMoveScriptVirgationInfo",
+            "id": 1320
+        },
+        {
+            "class": "TSFoundMoveScriptData",
+            "id": 1321
+        },
+        {
+            "class": "TSHitTestScriptData",
+            "id": 1322
+        },
+        {
+            "class": "TSHitVirgationScriptData",
+            "id": 1323
+        },
+        {
+            "class": "TSIntervalCreateScriptData",
+            "id": 1324
+        },
+        {
+            "class": "TSLandScriptData",
+            "id": 1325
+        },
+        {
+            "class": "TSJumpinLandScriptData",
+            "id": 1326
+        },
+        {
+            "class": "TSMapTriggerTestScriptData",
+            "id": 1327
+        },
+        {
+            "class": "TSMove3DScriptData",
+            "id": 1328
+        },
+        {
+            "class": "TSMoveScriptData",
+            "id": 1329
+        },
+        {
+            "class": "TSPlayNextQTEScriptData",
+            "id": 1330
+        },
+        {
+            "class": "TSSetBulletTimeScriptOption",
+            "id": 1331
+        },
+        {
+            "class": "TSSetBulletTimeScriptData",
+            "id": 1332
+        },
+        {
+            "class": "TSTimerVirgationOption",
+            "id": 1333
+        },
+        {
+            "class": "TSTimerVirgationScriptData",
+            "id": 1334
+        },
+        {
+            "class": "KFToggleAIAction",
+            "id": 1335
+        },
+        {
+            "class": "TSToggleAIScriptData",
+            "id": 1336
+        },
+        {
+            "class": "KFToggleAnimatorDataAction",
+            "id": 1337
+        },
+        {
+            "class": "TSToggleAnimatorDataScriptData",
+            "id": 1338
+        },
+        {
+            "class": "TSToWalkableScriptData",
+            "id": 1339
+        },
+        {
+            "class": "TSVariableScriptData",
+            "id": 1340
+        },
+        {
+            "class": "TSVirgationInfo",
+            "id": 1341
+        },
+        {
+            "class": "TSNoneScriptData",
+            "id": 1342
+        },
+        {
+            "class": "TSPlayScriptData",
+            "id": 1343
+        },
+        {
+            "class": "TSStopScriptData",
+            "id": 1344
+        },
+        {
+            "class": "TSPlayMotionScriptData",
+            "id": 1345
+        },
+        {
+            "class": "TSNextActionScriptData",
+            "id": 1346
+        },
+        {
+            "class": "TSNextStateScriptData",
+            "id": 1347
+        },
+        {
+            "class": "TSNextMapChunkScriptData",
+            "id": 1348
+        },
+        {
+            "class": "TSExecFrameScriptData",
+            "id": 1349
+        },
+        {
+            "class": "TSExecGraphBlockScriptData",
+            "id": 1350
+        },
+        {
+            "class": "KFMap",
+            "id": 1351
+        },
+        {
+            "class": "KFBulletTimeReason",
+            "id": 1352
+        },
+        {
+            "class": "KFGraphArgEventListenInfo",
+            "id": 1353
+        },
+        {
+            "class": "BTGraphEventListener",
+            "id": 1354
+        },
+        {
+            "class": "KFGraphArgTimerInfo",
+            "id": 1355
+        },
+        {
+            "class": "BTGraphTimer",
+            "id": 1356
+        },
+        {
+            "class": "KFUIWidgetPropertyArg",
+            "id": 1357
+        },
+        {
+            "class": "KFUIWidgetParam",
+            "id": 1358
+        },
+        {
+            "class": "UEUIPropertyValueType",
+            "id": 1359
+        },
+        {
+            "class": "UEUITypeEnum",
+            "id": 1360
+        },
+        {
+            "class": "UEUIProperty",
+            "id": 1361
+        },
+        {
+            "class": "UEUIWidgetConfig",
+            "id": 1362
+        },
+        {
+            "class": "GSFireGraphEventScriptData",
+            "id": 1363
+        },
+        {
+            "class": "GSPlayStateScriptData",
+            "id": 1364
+        },
+        {
+            "class": "KFNewBlkData",
+            "id": 1365
+        },
+        {
+            "class": "BlkExecSide",
+            "id": 1366
+        },
+        {
+            "class": "SDVector3",
+            "id": 1367
+        },
+        {
+            "class": "SDFloat",
+            "id": 1368
+        },
+        {
+            "class": "SDInt32",
+            "id": 1369
+        },
+        {
+            "class": "SDString",
+            "id": 1370
+        },
+        {
+            "class": "V3DataType",
+            "id": 1371
+        },
+        {
+            "class": "V3Data",
+            "id": 1372
+        },
+        {
+            "class": "KFClassData",
+            "id": 1373
+        },
+        {
+            "class": "KFGraphExecType",
+            "id": 1374
+        }
+    ]
+}

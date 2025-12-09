@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网络调试</title>
+
+    <link rel="stylesheet" type="text/css" href="themes/black/easyui.css">
+    <link rel="stylesheet" type="text/css" href="themes/icon.css">
+    <script type="text/javascript" src="src/ext/Include.js"></script>
+
+    <script type="text/javascript" src="src/debug/BreakDebuggerTool.js"></script>
+    <script type="text/javascript" src="src/debug/CodeDebugger.js"></script>
+    <script type="text/javascript" src="src/debug/BreakDebugger.js"></script>
+    <script type="text/javascript" src="src/debug/NetSwitchUI.js"></script>
+    <script type="text/javascript" src="src/debug/NetDebug.js"></script>
+
+</head>
+
+<body class="easyui-layout">
+    <div data-options="region:'north',split:false,collapsedSize:20" style="height:32px">
+        <a id="opendevpanel" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-help'" style="border: none;">调试面板</a>
+        <input class="easyui-checkbox" id="connectRemoteServer" labelWidth="60" label="远程:" labelAlign="right" />
+        <input class="easyui-combobox" id="connectionHosts" data-options="valueField:'value',textField:'label'" />
+        <input class="easyui-checkbox" id="remoteDebug" labelWidth="100" label="运行时调试:" labelAlign="right" />
+    </div>
+
+    <div data-options="region:'center'">
+        <div class="easyui-layout" style="width:100%;height:100%;">
+            <div data-options="region:'north',split:false,collapsedSize:20" style="height:32px">
+                <a id="debugresume" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-play'"  style="border: none;">继续运行</a>
+                <a id="debugbystep" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-continue'"  style="border: none;">单步</a>
+            </div>
+            <div data-options="region:'center'">
+                <div id="debugtabs" class="easyui-tabs" data-options="fit:true,border:false,plain:true,narrow:false">
+                    <div data-options="title:'变量列表'" style="overflow-x: hidden;">
+                        <div class="easyui-layout" style="width:100%;height:100%;">
+                            <div data-options="region:'center'">
+                                <table id="watchvartable" class="easyui-treegrid" style="width:100%;height:auto;"
+                                       data-options="iconCls: 'icon-ok',fitColumns: true,idField: 'id',treeField: 'name'">
+                                    <thead>
+                                    <tr>
+                                        <th data-options="field:'name',width:60">变量</th>
+                                        <th data-options="field:'text',width:40">值</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div data-options="region:'south',split:false,collapsedSize:20" style="height:32px;">
+                                <span>&nbsp;&nbsp;变量类型：</span>
+                                <select id="watchvartype" class="easyui-combobox" style="width: 100px">
+                                    <option value="int">整型</option>
+                                    <option value="float">浮点</option>
+                                    <option value="string">字符串</option>
+                                    <option value="object">对象</option>
+                                </select>
+                                <span>&nbsp;&nbsp;变量名：</span>
+                                <input id="watchvarpath" class="f1 easyui-textbox" style="width: 540px"></input>
+                                <a id="addwatchvar" class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增</a>
+                                <a id="removewatchvar" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
+                                <a id="refreshwatchvars" class="easyui-linkbutton" data-options="iconCls:'icon-reload'">刷新</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-options="title:'断点列表'" style="overflow-x: hidden;">
+                        <table id="debugbpstbl" class="easyui-treegrid" style="width:100%;height:auto;"
+                               data-options="iconCls: 'icon-ok',fitColumns: true, idField: 'id',treeField: 'name'">
+                            <thead>
+                            <tr>
+                                <th data-options="field:'name',width:30">断点</th>
+                                <th data-options="field:'text',width:70">值</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="debugbpsmenu" class="easyui-menu" style="width:120px;">
+        <div onclick="BreakDebugger.RemoveBreakPoint()" data-options="iconCls:'icon-remove'">删除</div>
+        <div onclick="BreakDebugger.RemoveAllBreakPoints()" data-options="iconCls:'icon-remove'">删除所有</div>
+        <div onclick="BreakDebugger.EnableAllBreakPoints(true)" data-options="iconCls:'icon-ok'">启用所有</div>
+        <div onclick="BreakDebugger.EnableAllBreakPoints(false)" data-options="iconCls:'icon-cancel'">禁用所有</div>
+    </div>
+    <div id="debugwatchobjectwin" class="easyui-window" title="查看对象"
+         style="width:800px;height:600px;border: none;"
+         data-options="iconCls:'icon-edit',modal:true,collapsible:false,minimizable:false,maximizable:false,resizable:true,scrollbarSize:0,closed:true">
+        <div class="easyui-panel" title="" style="width: 100%; height: 100%; border: none">
+            <table id="watchobject" class="easyui-treegrid" style="width:100%;height:100%;"
+                   data-options="iconCls: 'icon-ok',fitColumns: true,idField: 'id',treeField: 'name'">
+                <thead>
+                <tr>
+                    <th data-options="field:'name',width:60,editor:'text',formatter:KFDEditor.name_formatter">名称</th>
+                    <th data-options="field:'value',width:40,editor:'text',formatter:KFDEditor.formatter">值</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="src/ext/PostInclude.js"></script>
+    <script type="text/javascript" src="src/window/BaseWindow.js"></script>
+    <script type="text/javascript" src="src/window/KFDEdtWrapWindow.js"></script>
+    <script type="text/javascript" src="src/debug/NetDebugWindow.js"></script>
+
+</body>
+</html>

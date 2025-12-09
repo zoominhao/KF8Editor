@@ -1,0 +1,167 @@
+[
+    {
+        "includes": [
+            "Data/KFFrameData.h",
+            "KFScriptDataF.h"
+        ],
+        "class": "KFFrameData",
+        "extend": "KFGCObject",
+        "propertys": [
+            {
+                "id": 1,
+                "default": "0",
+                "name": "index",
+                "type": "int32"
+            },
+            {
+                "id": 2,
+                "default": "false",
+                "name": "once",
+                "type": "bool"
+            },
+            {
+                "id": 3,
+                "default": "0",
+                "name": "startPC",
+                "type": "int32"
+            },
+            {
+                "id": 4,
+                "default": "3",
+                "name": "varsize",
+                "type": "int32"
+            },
+            {
+                "id": 5,
+                "default": "0",
+                "name": "paramsize",
+                "type": "int32"
+            },
+            {
+                "id": 6,
+                "clear": "ClearOne",
+                "name": "scripts",
+                "otype": "KFScriptData",
+                "type": "mixarr"
+            }
+        ],
+        "clsid": 1008
+    },
+    {
+        "includes": [
+            "Data/KFScriptData.h"
+        ],
+        "typedef": 1,
+        "typeid": 0,
+        "class": "KFScriptData",
+        "extend": "KFGCObject",
+        "propertys": [
+            {
+                "id": 1,
+                "KEY": "CUSTOM",
+                "unknowtags": [
+                    {
+                        "tag": "NET",
+                        "val": "never"
+                    }
+                ],
+                "name": "type",
+                "type": "kfname"
+            },
+            {
+                "id": 2,
+                "cname": "额外整形参数",
+                "unknowtags": [
+                    {
+                        "tag": "NET",
+                        "val": "never"
+                    }
+                ],
+                "name": "paramInts",
+                "otype": "int8",
+                "type": "arr"
+            },
+            {
+                "id": 3,
+                "cname": "脚本分组",
+                "enum": "KFScriptGroupType",
+                "unknowtags": [
+                    {
+                        "tag": "NET",
+                        "val": "never"
+                    }
+                ],
+                "default": "KFScriptGroupType::Global",
+                "name": "group",
+                "type": "int8"
+            }
+        ],
+        "clsid": 1009
+    },
+    {
+        "includes": [
+            "Data/KFScriptTypeDef.h"
+        ],
+        "nof": 1,
+        "class": "KFScriptGroupType",
+        "extend": "",
+        "propertys": [
+            {
+                "id": 1,
+                "cname": "未定义分组",
+                "default": "0",
+                "name": "Undefined",
+                "type": "uint8"
+            },
+            {
+                "id": 1,
+                "cname": "目标逻辑分组",
+                "default": "1",
+                "name": "Target",
+                "type": "uint8"
+            },
+            {
+                "id": 1,
+                "cname": "域分组",
+                "default": "2",
+                "name": "Domain",
+                "type": "uint8"
+            },
+            {
+                "id": 1,
+                "cname": "目标渲染分组",
+                "default": "3",
+                "name": "TargetRender",
+                "type": "uint8"
+            },
+            {
+                "id": 1,
+                "cname": "全局逻辑分组",
+                "default": "4",
+                "name": "Global",
+                "type": "uint8"
+            },
+            {
+                "id": 1,
+                "cname": "全局渲染分组",
+                "default": "6",
+                "name": "GlobalRender",
+                "type": "uint8"
+            },
+            {
+                "id": 1,
+                "default": "100",
+                "name": "LowLevel",
+                "type": "uint8"
+            },
+            {
+                "id": 1,
+                "cname": "网络变量",
+                "default": "101",
+                "name": "NetVar",
+                "type": "uint8"
+            }
+        ],
+        "clsid": 1010
+    }
+]

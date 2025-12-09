@@ -1,0 +1,28 @@
+{
+    "classlist": [
+        {
+            "class": "TestKFDProcData",
+            "id": 1000
+        },
+        {
+            "class": "FVector",
+            "id": 1001
+        },
+        {
+            "class": "TestClassA",
+            "id": 1002
+        },
+        {
+            "class": "TestObjectA",
+            "id": 1003
+        },
+        {
+            "class": "KFTestObjectA",
+            "id": 1004
+        },
+        {
+            "class": "KFTestObjectB",
+            "id": 1005
+        }
+    ]
+}

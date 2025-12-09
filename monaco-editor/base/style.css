@@ -1,0 +1,61 @@
+body {
+  font-family: "Source Han Sans", "San Francisco", "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "sans-serif";
+  transition: background-color .2s;
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 20px;
+  right: 0;
+  
+  background-color: #333;
+  color: #fff;
+  font-size: 20px;
+  
+  line-height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 15px;
+
+  overflow: hidden;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100%;
+  right: 0;
+
+  margin: 0 auto;
+  display: block;
+
+  transition: 0.2s;
+  overflow: hidden;
+  z-index: 0;
+  background-color: #0E2D5F;
+}
+
+.bpGlyphMarginClass {
+  background: red;
+}
+.bpContentClass {
+  background: palevioletred;
+}
+
+.bpDisableGlyphMarginClass {
+  background: palevioletred;
+}
+.bpDisableContentClass {
+  background: transparent;
+}
+
+.bpHitGlyphMarginClass {
+  background: yellow;
+}
+.bpHitContentClass {
+  background: lightsteelblue;
+}
