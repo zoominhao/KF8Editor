@@ -25,6 +25,8 @@ Thumbs.db
 
 # Logs
 *.log
+logs/
+tool/KFMiddleServer/logs/
 
 # Build
 build/

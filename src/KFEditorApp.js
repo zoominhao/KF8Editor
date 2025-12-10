@@ -293,7 +293,7 @@ KFEditorApp.prototype.Init = function () {
         editor.edaction.RedoAction();
     });
     this.searchUI.click(function () {
-        OpenNewWindow("search.html", _global.apppath, _global.kfdpath, _global.appdatapath);
+        OpenNewWindow(WindowConfig.search, _global.apppath, _global.kfdpath, _global.appdatapath);
     });
 
     _global.Event.on("OnBlkOpen", function (data) {

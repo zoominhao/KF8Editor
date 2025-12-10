@@ -61,7 +61,7 @@ NetDebugMain.prototype.CreateNetDebugWindow = function () {
             self.OnNetDebugWinClosed();
         });
 
-        win.loadFile('netdebug.html',{
+        win.loadFile(WindowConfig.netDebug,{
             query: {
                 apppath:_global.apppath,
                 kfdpath:_global.kfdpath,

@@ -3,6 +3,7 @@ const apipath = nodeRequire('path');
 const {ipcRenderer} = nodeRequire('electron');
 
 __Native = {};
+// WindowConfig is loaded by Include.js before this file
 
 function KFWriteFile(path, contents, cb) {
     apifs.mkdir(apipath.dirname(path), {recursive: true}, function (err) {
@@ -124,7 +125,7 @@ function GetPath(name) {
 }
 
 function OpenBlkInNewWindow(path, apppath, kfdpath, appdatapath) {
-    OpenNewWindow("Windows.html", apppath, kfdpath, appdatapath, {"path": path});
+    OpenNewWindow(WindowConfig.blkEditor, apppath, kfdpath, appdatapath, {"path": path});
 }
 
 function OpenNewWindow(url, apppath, kfdpath, appdatapath, otherqueryparams) {
