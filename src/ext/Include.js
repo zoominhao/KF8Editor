@@ -8,7 +8,16 @@ function Include() {
 	AddPath("libs/jquery.color.js");
 	AddPath("libs/base64.js");
 
-	AddPath("src/config/WindowConfig.js");  // Window configuration
+	// Configuration modules
+	AddPath("src/config/WindowConfig.js");
+	AddPath("src/config/ToolbarConfig.js");
+
+	// Core modules
+	AddPath("src/core/CommonInit.js");
+
+	// Utility modules
+	AddPath("src/utils/WindowUtils.js");
+
 	AddPath("src/ext/Native.js");
 	AddPath("src/ext/CommonUtil.js");
 	AddPath("src/ext/Expression.js");

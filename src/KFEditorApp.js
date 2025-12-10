@@ -840,13 +840,8 @@ ipcRenderer.on("globalconfig", (event) => {
     ipcRenderer.send("globalconfig", config);
 });
 
-loadjspackage(["KFData", "Core", "KFNetwork"],
-    "libs/kf/",
-    function (jspaths) {
-        loadandincludejs(jspaths, function () {
-            _global.Event.emit("Ready");
-        });
-    },
-    ["src/m"]
-);
+// Use CommonInit for module loading
+CommonInit.initKFModules(function() {
+    _global.Event.emit("Ready");
+});
 

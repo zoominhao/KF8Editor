@@ -35,8 +35,13 @@ KFNewWindow.prototype.Init = function () {
     }
     $('#newsaveblk').click(this.clickSaveFunc);
 
+    // Use WindowUtils for common operations
     $('#opendevpanel').click(function () {
-        OpenDevToolsByID(_global.windowID);
+        WindowUtils.openDevTools(_global.windowID);
+    });
+
+    $('#reloadpage').click(function () {
+        WindowUtils.reloadWindow(_global.windowID);
     });
 
     $('#undo').click(function () {
@@ -367,12 +372,7 @@ _global.Event.on("Ready", function () {
 });
 
 ///加载需要有库
-loadjspackage(["KFData", "Core", "KFNetwork"],
-    "libs/kf/",
-    function (jspaths) {
-        loadandincludejs(jspaths, function () {
-            _global.Event.emit("Ready");
-        });
-    },
-    ["src/m"]
-);
+// Use CommonInit for module loading
+CommonInit.initKFModules(function() {
+    _global.Event.emit("Ready");
+});
