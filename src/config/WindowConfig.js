@@ -8,7 +8,7 @@ const WindowConfig = {
     main: "index.html",
 
     // Editor windows
-    blkEditor: "windows.html",          // BLK file editor window (lowercase)
+    blkEditor: "singlewindow.html",     // Single BLK file editor window
     kfdEditor: "KFDEditor.html",        // Standalone KFD editor
 
     // Tool windows
