@@ -28,5 +28,13 @@ Thumbs.db
 logs/
 tool/KFMiddleServer/logs/
 
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+.Python
+
 # Build
 build/
